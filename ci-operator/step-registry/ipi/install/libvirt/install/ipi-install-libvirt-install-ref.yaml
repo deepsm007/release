@@ -32,8 +32,6 @@ ref:
     - "bastion-ppc64le-libvirt.svc.cluster.local"
   dependencies:
   - name: "release:latest"
-    env: OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE
-  - name: "release:latest"
     env: RELEASE_IMAGE_LATEST
   documentation: |-
     The libvirt IPI install step runs the OpenShift Installer in order to bring
