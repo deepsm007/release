@@ -461,6 +461,20 @@ periodics:
         value: aws
       - name: UNRESOLVED_CONFIG
         value: |
+          releases:
+            initial:
+              candidate:
+                architecture: multi
+                product: ocp
+                relative: 1
+                stream: nightly
+                version: "4.16"
+            latest:
+              candidate:
+                architecture: multi
+                product: ocp
+                stream: nightly
+                version: "4.16"
           resources:
             '*':
               limits:
