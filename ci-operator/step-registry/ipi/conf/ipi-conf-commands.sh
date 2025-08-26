@@ -28,6 +28,35 @@ sshKey: |
   ${ssh_pub_key}
 EOF
 
+excluding older releases because of the bug fixed in 4.10, see: https://bugzilla.redhat.com/show_bug.cgi?id=1960378
+if (( ocp_minor_version > 10 || ocp_major_version > 4 )); then
+  PATCH="${SHARED_DIR}/install-config-image-mirrors.yaml.patch"
+  cat > "${PATCH}" << EOF
+imageDigestSources:
+- mirrors:
+  - quay.io/openshift/ci
+  source: quay-proxy.ci.openshift.org/openshift/ci
+imageTagMirrors:
+- mirrors:
+  - quay.io/openshift/ci
+  source: quay-proxy.ci.openshift.org/openshift/ci
+EOF
+
+  yq-go m -x -i "${out}" "${PATCH}"
+
+  pull_secret=$(<"${CLUSTER_PROFILE_DIR}/pull-secret")
+  mirror_auth=$(echo ${pull_secret} | jq '.auths["quay.io"].auth' -r)
+  pull_secret_qci=$(jq --arg auth ${mirror_auth} --arg repo "quay-proxy.ci.openshift.org" '.["auths"] += {($repo): {$auth}}' <<<  $pull_secret)
+
+  PATCH="/tmp/install-config-pull-secret.yaml.patch"
+  cat > "${PATCH}" << EOF
+pullSecret: >
+  $(echo "${pull_secret_qci}" | jq -c .)
+EOF
+  yq-go m -x -i "${out}" "${PATCH}"
+  rm "${PATCH}"
+fi
+
 if [ ${FIPS_ENABLED} = "true" ]; then
 	echo "Adding 'fips: true' to install-config.yaml"
 	cat >> "${out}" << EOF
