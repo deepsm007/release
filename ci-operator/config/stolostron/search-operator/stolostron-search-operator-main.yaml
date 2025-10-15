@@ -52,7 +52,7 @@ tests:
         make -f Makefile.prow test-e2e
         set +o pipefail
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /etc/secret
         name: ocm-obs-usa-quaytoken
         namespace: test-credentials
@@ -65,6 +65,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-kind
+    allow_pre_post_step_overrides: true
 - as: pr-image-mirror
   steps:
     dependencies:

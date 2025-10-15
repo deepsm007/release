@@ -63,7 +63,7 @@ resources:
       memory: 200Mi
   installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
 tests:
 - always_run: false
@@ -93,7 +93,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/parallel
     pre:
     - chain: ipi-aws-pre
@@ -101,6 +101,7 @@ tests:
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 6h0m0s
 - always_run: false
   as: e2e-aws-ovn-imdsv2

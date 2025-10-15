@@ -8,7 +8,7 @@ releases:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.19"
+      version: '4.19'
 resources:
   '*':
     requests:
@@ -21,9 +21,9 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "21"
+      ADDITIONAL_WORKER_NODES: '21'
       BASE_DOMAIN: qe.devcluster.openshift.com
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-netpol-v2
@@ -34,17 +34,17 @@ tests:
   steps:
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "3"
+      ADDITIONAL_WORKER_NODES: '3'
       BASE_DOMAIN: qe.devcluster.openshift.com
-      ENABLE_LOCAL_INDEX: "true"
+      ENABLE_LOCAL_INDEX: 'true'
       ES_TYPE: qe
       EXTRA_FLAGS: --churn-duration=20m --pod-ready-threshold=20s --service-latency
-      IGNORE_JOB_ITERATIONS: "true"
-      ITERATION_MULTIPLIER_ENV: "15"
+      IGNORE_JOB_ITERATIONS: 'true'
+      ITERATION_MULTIPLIER_ENV: '15'
       OUTPUT_FORMAT: JUNIT
-      RUN_ORION: "true"
-      VERSION: "4.19"
-      ZONES_COUNT: "3"
+      RUN_ORION: 'true'
+      VERSION: '4.19'
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-control-plane
@@ -57,7 +57,7 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale
     env:
-      ADDITIONAL_WORKER_NODES: "249"
+      ADDITIONAL_WORKER_NODES: '249'
       BASE_DOMAIN: perfscale.devcluster.openshift.com
       COMPUTE_NODE_TYPE: m5.xlarge
       ES_SECRETS_PATH: /prod-secret
@@ -67,7 +67,7 @@ tests:
       SIZE_VARIANT: large
       USER_TAGS: |
         TicketId 532
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-control-plane
@@ -78,7 +78,7 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale
     env:
-      ADDITIONAL_WORKER_NODES: "117"
+      ADDITIONAL_WORKER_NODES: '117'
       BASE_DOMAIN: perfscale.devcluster.openshift.com
       COMPUTE_NODE_TYPE: m5.xlarge
       ES_SECRETS_PATH: /prod-secret
@@ -88,7 +88,7 @@ tests:
       SIZE_VARIANT: large
       USER_TAGS: |
         TicketId 532
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-control-plane
@@ -100,10 +100,10 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "21"
+      ADDITIONAL_WORKER_NODES: '21'
       BASE_DOMAIN: qe.devcluster.openshift.com
       ES_SECRETS_PATH: /prod-secret
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-control-plane
@@ -113,10 +113,10 @@ tests:
   steps:
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "21"
+      ADDITIONAL_WORKER_NODES: '21'
       BASE_DOMAIN: qe.devcluster.openshift.com
       ES_SECRETS_PATH: /prod-secret
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-control-plane
@@ -129,8 +129,8 @@ tests:
     cluster_profile: aws-perfscale-qe
     env:
       BASE_DOMAIN: qe.devcluster.openshift.com
-      COMPUTE_NODE_REPLICAS: "3"
-      ZONES_COUNT: "3"
+      COMPUTE_NODE_REPLICAS: '3'
+      ZONES_COUNT: '3'
     test:
     - chain: openshift-qe-conc-builds
     - chain: openshift-qe-run-api-apf-customized-flowcontrol
@@ -143,7 +143,7 @@ tests:
     cluster_profile: aws-perfscale-qe
     env:
       BASE_DOMAIN: qe.devcluster.openshift.com
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - chain: openshift-qe-cluster-density-v2
     workflow: openshift-qe-installer-aws-compact
@@ -154,9 +154,9 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "21"
+      ADDITIONAL_WORKER_NODES: '21'
       BASE_DOMAIN: qe.devcluster.openshift.com
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-router-perf
@@ -168,9 +168,9 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "21"
+      ADDITIONAL_WORKER_NODES: '21'
       BASE_DOMAIN: qe.devcluster.openshift.com
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-node-density-heavy
@@ -182,7 +182,7 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "21"
+      ADDITIONAL_WORKER_NODES: '21'
       BASE_DOMAIN: qe.devcluster.openshift.com
     test:
     - ref: openshift-qe-workers-scale
@@ -195,11 +195,11 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "3"
+      ADDITIONAL_WORKER_NODES: '3'
       BASE_DOMAIN: qe.devcluster.openshift.com
       EXTRA_FLAGS: --pod-ready-threshold=43s
-      ITERATIONS_PER_NAMESPACE: "100"
-      ZONES_COUNT: "3"
+      ITERATIONS_PER_NAMESPACE: '100'
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-node-density-heavy
@@ -211,10 +211,10 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "3"
+      ADDITIONAL_WORKER_NODES: '3'
       BASE_DOMAIN: qe.devcluster.openshift.com
       POD_READY_THRESHOLD: 4s
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-node-density-cni
@@ -226,13 +226,13 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale
     env:
-      ADDITIONAL_WORKER_NODES: "6"
+      ADDITIONAL_WORKER_NODES: '6'
       BASE_DOMAIN: perfscale.devcluster.openshift.com
       COMPUTE_NODE_TYPE: m5.2xlarge
-      LOKI_USE_SERVICEMONITOR: "false"
+      LOKI_USE_SERVICEMONITOR: 'false'
       OPENSHIFT_INFRA_NODE_INSTANCE_TYPE: c5.4xlarge
       SET_ENV_BY_PLATFORM: custom
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - ref: openshift-qe-perfscale-aws-data-path-sg
@@ -246,7 +246,7 @@ tests:
     cluster_profile: aws-perfscale-qe
     env:
       BASE_DOMAIN: qe.devcluster.openshift.com
-      COMPUTE_NODE_REPLICAS: "3"
+      COMPUTE_NODE_REPLICAS: '3'
     test:
     - chain: openshift-qe-control-plane
     workflow: openshift-qe-installer-aws
@@ -258,7 +258,7 @@ tests:
     cluster_profile: aws-perfscale-qe
     env:
       BASE_DOMAIN: qe.devcluster.openshift.com
-      COMPUTE_NODE_REPLICAS: "3"
+      COMPUTE_NODE_REPLICAS: '3'
     test:
     - chain: openshift-qe-node-density-heavy
     workflow: openshift-qe-installer-aws
@@ -270,7 +270,7 @@ tests:
     cluster_profile: aws-perfscale-qe
     env:
       BASE_DOMAIN: qe.devcluster.openshift.com
-      COMPUTE_NODE_REPLICAS: "3"
+      COMPUTE_NODE_REPLICAS: '3'
     test:
     - chain: openshift-qe-node-density-cni
     workflow: openshift-qe-installer-aws
@@ -280,21 +280,21 @@ tests:
     cluster_profile: aws-ovn-perfscale
     env:
       BASE_DOMAIN: core.ovn.devcluster.openshift.com
-      BURST: "10"
+      BURST: '10'
       CLUSTER_NETWORK_CIDR: 10.128.0.0/14
-      CLUSTER_NETWORK_HOST_PREFIX: "20"
+      CLUSTER_NETWORK_HOST_PREFIX: '20'
       COMPUTE_NODE_TYPE: c6a.16xlarge
       CONTROL_PLANE_INSTANCE_TYPE: m6a.4xlarge
       EXTRA_FLAGS: --pod-ready-threshold=500s
-      ITERATIONS_PER_NAMESPACE: "100"
-      MAX_PODS: "2750"
+      ITERATIONS_PER_NAMESPACE: '100'
+      MAX_PODS: '2750'
       OPENSHIFT_INFRA_NODE_INSTANCE_TYPE: r5.4xlarge
-      PODS_PER_NODE: "2750"
-      PPROF: "false"
+      PODS_PER_NODE: '2750'
+      PPROF: 'false'
       PROFILE_TYPE: both
-      QPS: "5"
+      QPS: '5'
       SET_ENV_BY_PLATFORM: custom
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     post:
     - chain: ipi-aws-post
     pre:
@@ -307,6 +307,7 @@ tests:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-node-density-heavy
     workflow: openshift-qe-installer-aws
+    allow_pre_post_step_overrides: true
   timeout: 8h0m0s
 - as: control-plane-ipsec-120nodes
   cron: 0 10 11,25 * *
@@ -314,7 +315,7 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale
     env:
-      ADDITIONAL_WORKER_NODES: "117"
+      ADDITIONAL_WORKER_NODES: '117'
       BASE_DOMAIN: perfscale.devcluster.openshift.com
       COMPUTE_NODE_TYPE: m5.xlarge
       EXTRA_FLAGS: --churn-duration=20m --service-latency
@@ -324,7 +325,7 @@ tests:
       SIZE_VARIANT: large
       USER_TAGS: |
         TicketId 532
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-control-plane
@@ -336,7 +337,7 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale
     env:
-      ADDITIONAL_WORKER_NODES: "249"
+      ADDITIONAL_WORKER_NODES: '249'
       BASE_DOMAIN: perfscale.devcluster.openshift.com
       COMPUTE_NODE_TYPE: m5.xlarge
       EXTRA_FLAGS: --churn-duration=20m --service-latency
@@ -346,7 +347,7 @@ tests:
       SIZE_VARIANT: large
       USER_TAGS: |
         TicketId 532
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - chain: openshift-qe-control-plane
@@ -357,14 +358,14 @@ tests:
     allow_skip_on_success: true
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "6"
+      ADDITIONAL_WORKER_NODES: '6'
       BASE_DOMAIN: qe.devcluster.openshift.com
       COMPUTE_NODE_TYPE: m5.2xlarge
-      LOKI_USE_SERVICEMONITOR: "false"
+      LOKI_USE_SERVICEMONITOR: 'false'
       OPENSHIFT_INFRA_NODE_INSTANCE_TYPE: c5.4xlarge
       SET_ENV_BY_PLATFORM: custom
-      TOLERANCE: "200"
-      ZONES_COUNT: "3"
+      TOLERANCE: '200'
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-workers-scale
     - ref: openshift-qe-perfscale-aws-data-path-sg
@@ -376,11 +377,11 @@ tests:
   steps:
     cluster_profile: aws-perfscale-qe
     env:
-      ADDITIONAL_WORKER_NODES: "21"
+      ADDITIONAL_WORKER_NODES: '21'
       BASE_DOMAIN: qe.devcluster.openshift.com
       COMPUTE_NODE_TYPE: m5.xlarge
-      ITERATION_MULTIPLIER_ENV: "3"
-      VERSION: "4.19"
+      ITERATION_MULTIPLIER_ENV: '3'
+      VERSION: '4.19'
     post:
     - chain: ipi-aws-post
     pre:
@@ -388,6 +389,7 @@ tests:
     - chain: create-infra-move-ingress-monitoring-registry
     - ref: openshift-qe-workers-scale
     workflow: openshift-qe-udn-density-pods
+    allow_pre_post_step_overrides: true
   timeout: 8h0m0s
 - always_run: false
   as: ingress-perf-gateway-api-9nodes
@@ -396,17 +398,17 @@ tests:
     cluster_profile: aws-perfscale-qe
     env:
       BASE_DOMAIN: qe.devcluster.openshift.com
-      COMPUTE_NODE_REPLICAS: "9"
+      COMPUTE_NODE_REPLICAS: '9'
       COMPUTE_NODE_TYPE: m5.2xlarge
       CONFIG: config/standard-gateway-api.yml
-      GATEWAY_API: "true"
-      IF_MOVE_INGRESS: "false"
-      IF_MOVE_MONITORING: "false"
-      IF_MOVE_REGISTRY: "false"
-      LOKI_USE_SERVICEMONITOR: "false"
+      GATEWAY_API: 'true'
+      IF_MOVE_INGRESS: 'false'
+      IF_MOVE_MONITORING: 'false'
+      IF_MOVE_REGISTRY: 'false'
+      LOKI_USE_SERVICEMONITOR: 'false'
       OPENSHIFT_INFRA_NODE_INSTANCE_TYPE: c5.4xlarge
       SET_ENV_BY_PLATFORM: custom
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     test:
     - ref: openshift-qe-gateway-api-day2-config
     - chain: openshift-qe-ingress-perf

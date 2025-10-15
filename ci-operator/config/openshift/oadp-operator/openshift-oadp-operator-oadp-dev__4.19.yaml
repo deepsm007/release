@@ -24,7 +24,7 @@ releases:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.19"
+      version: '4.19'
 resources:
   '*':
     limits:
@@ -50,7 +50,7 @@ tests:
       cli: latest
       commands: make test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/oadp-credentials
         name: oadp-credentials
         namespace: test-credentials
@@ -76,7 +76,7 @@ tests:
       cli: latest
       commands: make test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/oadp-credentials
         name: oadp-credentials
         namespace: test-credentials
@@ -102,7 +102,7 @@ tests:
       cli: latest
       commands: make TEST_CLI=true test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/oadp-credentials
         name: oadp-credentials
         namespace: test-credentials
@@ -129,7 +129,7 @@ tests:
       cli: latest
       commands: make TEST_CLI=true test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/oadp-credentials
         name: oadp-credentials
         namespace: test-credentials
@@ -156,7 +156,7 @@ tests:
       cli: latest
       commands: make TEST_VIRT=true test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/oadp-credentials
         name: oadp-credentials
         namespace: test-credentials
@@ -182,7 +182,7 @@ tests:
       cli: latest
       commands: make TEST_VIRT=true test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/oadp-credentials
         name: oadp-credentials
         namespace: test-credentials
@@ -209,7 +209,7 @@ tests:
       cli: latest
       commands: make TEST_HCP=true test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/oadp-credentials
         name: oadp-credentials
         namespace: test-credentials
@@ -235,7 +235,7 @@ tests:
       cli: latest
       commands: make TEST_HCP=true test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/oadp-credentials
         name: oadp-credentials
         namespace: test-credentials
@@ -253,8 +253,8 @@ tests:
       OO_INDEX: ci-index
     env:
       COMPUTE_NODE_TYPE: m6a.2xlarge
-      HYPERSHIFT_GUEST_INFRA_OCP_ACCOUNT: "true"
-      HYPERSHIFT_NODE_COUNT: "1"
+      HYPERSHIFT_GUEST_INFRA_OCP_ACCOUNT: 'true'
+      HYPERSHIFT_NODE_COUNT: '1'
       OO_CHANNEL: dev
       OO_INSTALL_NAMESPACE: openshift-adp
       OO_PACKAGE: oadp-operator
@@ -271,10 +271,9 @@ tests:
     test:
     - as: e2e
       cli: latest
-      commands: make TEST_HCP_EXTERNAL=true HC_NAME=$(echo -n $PROW_JOB_ID|sha256sum|cut
-        -c-20) test-e2e
+      commands: make TEST_HCP_EXTERNAL=true HC_NAME=$(echo -n $PROW_JOB_ID|sha256sum|cut -c-20) test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/oadp-credentials
         name: oadp-credentials
         namespace: test-credentials
@@ -284,8 +283,9 @@ tests:
           cpu: 1000m
           memory: 512Mi
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: oadp-dev
   org: openshift
   repo: oadp-operator
-  variant: "4.19"
+  variant: '4.19'

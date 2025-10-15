@@ -54,6 +54,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-kind
+    allow_pre_post_step_overrides: true
 - as: pr-image-mirror
   steps:
     dependencies:

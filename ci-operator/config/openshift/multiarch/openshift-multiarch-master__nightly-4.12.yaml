@@ -66,63 +66,63 @@ releases:
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   arm64-latest:
     candidate:
       architecture: arm64
       product: ocp
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   initial:
     candidate:
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   latest:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   multi-initial:
     candidate:
       architecture: multi
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   multi-latest:
     candidate:
       architecture: multi
       product: ocp
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   ppc64le-initial:
     candidate:
       architecture: ppc64le
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   ppc64le-latest:
     candidate:
       architecture: ppc64le
       product: ocp
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   s390x-initial:
     candidate:
       architecture: s390x
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   s390x-latest:
     candidate:
       architecture: s390x
       product: ocp
       stream: nightly
-      version: "4.12"
+      version: '4.12'
 resources:
   '*':
     requests:
@@ -144,16 +144,13 @@ tests:
     dependencies:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:multi-latest
     env:
-      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\|
-        FIPS TestFIPS\| Multi-stage image builds should succeed\| Optimized image
-        builds should succeed\| build can reference a cluster service\| custom build
-        with buildah\| oc new-app should succeed\| prune builds based on settings\|
-        s2i build with a root\| verify /run filesystem contents\| oc can run\| oc
-        debug\| oc idle\| Pods cannot access\| Image append should create\| Image
-        extract should extract\| Image info should display\| Image layer subresource\|
-        oc tag should change image\| when installed on the cluster should\| OpenShift
-        alerting rules\| The HAProxy router should\| egressrouter cni resources\|
-        pod should start\| pod sysctls
+      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\| FIPS TestFIPS\| Multi-stage image
+        builds should succeed\| Optimized image builds should succeed\| build can reference a cluster service\| custom build
+        with buildah\| oc new-app should succeed\| prune builds based on settings\| s2i build with a root\| verify /run filesystem
+        contents\| oc can run\| oc debug\| oc idle\| Pods cannot access\| Image append should create\| Image extract should
+        extract\| Image info should display\| Image layer subresource\| oc tag should change image\| when installed on the
+        cluster should\| OpenShift alerting rules\| The HAProxy router should\| egressrouter cni resources\| pod should start\|
+        pod sysctls
     workflow: openshift-e2e-aws-heterogeneous
 - as: ocp-e2e-serial-aws-ovn-heterogeneous
   cron: 26 17 8 2 *
@@ -162,11 +159,10 @@ tests:
     dependencies:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:multi-latest
     env:
-      TEST_SKIPS: EgressIPs can be assigned automatically\| OpenShift alerting rules\|
-        pods should have the assigned EgressIPs\| only pods matched by the pod selector
-        should have the EgressIPs\| Image signature workflow can push a signed image
-        to openshift registry and verify it\| Multi-AZ Clusters should spread the
-        pods of a service across zones\| pods should keep the assigned EgressIPs
+      TEST_SKIPS: EgressIPs can be assigned automatically\| OpenShift alerting rules\| pods should have the assigned EgressIPs\|
+        only pods matched by the pod selector should have the EgressIPs\| Image signature workflow can push a signed image
+        to openshift registry and verify it\| Multi-AZ Clusters should spread the pods of a service across zones\| pods should
+        keep the assigned EgressIPs
       TEST_SUITE: openshift/conformance/serial
     workflow: openshift-e2e-aws-heterogeneous
 - as: ocp-e2e-aws-sdn-arm64
@@ -309,9 +305,9 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:s390x-latest
     env:
       ARCH: s390x
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
-      NODE_TUNING: "true"
+      NODE_TUNING: 'true'
       TEST_TYPE: conformance-parallel
     workflow: openshift-e2e-libvirt
 - as: ocp-heavy-build-ovn-remote-libvirt-s390x
@@ -324,9 +320,9 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:s390x-latest
     env:
       ARCH: s390x
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
-      NODE_TUNING: "true"
+      NODE_TUNING: 'true'
       TEST_TYPE: heavy-build
     workflow: openshift-e2e-libvirt
 - as: ocp-image-ecosystem-ovn-remote-libvirt-s390x
@@ -339,7 +335,7 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:multi-latest
     env:
       ARCH: s390x
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
       TEST_TYPE: image-ecosystem
     workflow: openshift-e2e-libvirt
@@ -353,7 +349,7 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:multi-latest
     env:
       ARCH: s390x
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
       TEST_TYPE: jenkins-e2e-rhel-only
     workflow: openshift-e2e-libvirt
@@ -367,7 +363,7 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:s390x-latest
     env:
       ARCH: s390x
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
       TEST_TYPE: conformance-serial
     workflow: openshift-e2e-libvirt
@@ -381,15 +377,16 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:s390x-latest
     env:
       ARCH: s390x
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
-      FIPS_ENABLED: "true"
-      NODE_TUNING: "true"
+      FIPS_ENABLED: 'true'
+      NODE_TUNING: 'true'
       TEST_TYPE: conformance-parallel
     pre:
     - chain: ipi-libvirt-pre
     - ref: fips-check
     workflow: openshift-e2e-libvirt
+    allow_pre_post_step_overrides: true
 - as: ocp-e2e-compact-ovn-remote-libvirt-s390x
   capabilities:
   - sshd-bastion
@@ -400,14 +397,14 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:s390x-latest
     env:
       ARCH: s390x
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
-      MASTER_DISK: "64424509440"
-      MASTER_MEMORY: "32768"
+      MASTER_DISK: '64424509440'
+      MASTER_MEMORY: '32768'
       TEST_TYPE: conformance-parallel
-      WORKER_DISK: "64424509440"
-      WORKER_MEMORY: "32768"
-      WORKER_REPLICAS: "0"
+      WORKER_DISK: '64424509440'
+      WORKER_MEMORY: '32768'
+      WORKER_REPLICAS: '0'
     workflow: openshift-e2e-libvirt
 - as: ocp-e2e-ovn-remote-s2s-libvirt-ppc64le
   cluster: build10
@@ -418,7 +415,7 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:ppc64le-latest
     env:
       ARCH: ppc64le
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
       TEST_TYPE: conformance-parallel
     workflow: openshift-e2e-libvirt
@@ -431,7 +428,7 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:ppc64le-latest
     env:
       ARCH: ppc64le
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
       TEST_TYPE: heavy-build
     workflow: openshift-e2e-libvirt
@@ -444,7 +441,7 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:multi-latest
     env:
       ARCH: ppc64le
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
       TEST_TYPE: image-ecosystem
     workflow: openshift-e2e-libvirt
@@ -457,7 +454,7 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:multi-latest
     env:
       ARCH: ppc64le
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
       TEST_TYPE: jenkins-e2e-rhel-only
     workflow: openshift-e2e-libvirt
@@ -470,7 +467,7 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:ppc64le-latest
     env:
       ARCH: ppc64le
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
       TEST_TYPE: conformance-serial
     workflow: openshift-e2e-libvirt
@@ -483,14 +480,15 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:ppc64le-latest
     env:
       ARCH: ppc64le
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_TYPE: conformance-parallel
     pre:
     - chain: ipi-libvirt-pre
     - ref: fips-check
     workflow: openshift-e2e-libvirt
+    allow_pre_post_step_overrides: true
 - as: ocp-e2e-compact-ovn-remote-s2s-libvirt-ppc64le
   cluster: build10
   cron: 0 0 31 12 *
@@ -500,14 +498,14 @@ tests:
       OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE: release:ppc64le-latest
     env:
       ARCH: ppc64le
-      BRANCH: "4.12"
+      BRANCH: '4.12'
       BUTANE_RELEASE: 4.12.0
-      MASTER_DISK: "64424509440"
-      MASTER_MEMORY: "32768"
+      MASTER_DISK: '64424509440'
+      MASTER_MEMORY: '32768'
       TEST_TYPE: conformance-parallel
-      WORKER_DISK: "64424509440"
-      WORKER_MEMORY: "32768"
-      WORKER_REPLICAS: "0"
+      WORKER_DISK: '64424509440'
+      WORKER_MEMORY: '32768'
+      WORKER_REPLICAS: '0'
     workflow: openshift-e2e-libvirt
 zz_generated_metadata:
   branch: master

@@ -61,15 +61,15 @@ resources:
       memory: 4Gi
   bin:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 7Gi
   tests:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 7Gi
   verify:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 8Gi
 tests:
 - as: verify
@@ -98,12 +98,13 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     pre:
     - chain: ipi-gcp-pre
     - ref: fips-check
     workflow: openshift-e2e-gcp
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-aws-ovn
   optional: true
@@ -135,10 +136,10 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      TEST_REQUIRES_SSH: "yes"
+      TEST_REQUIRES_SSH: 'yes'
       TEST_SUITE: openshift/disruptive
       TEST_TYPE: suite-conformance
-      TEST_UPGRADE_OPTIONS: ""
+      TEST_UPGRADE_OPTIONS: ''
     workflow: openshift-e2e-aws-disruption
 - always_run: false
   as: e2e-gcp-disruptive
@@ -187,8 +188,8 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      DELETE_MC: "false"
-      TEST_SUITE: ""
+      DELETE_MC: 'false'
+      TEST_SUITE: ''
       TEST_TYPE: upgrade
       TEST_UPGRADE_OPTIONS: abort-at=100
     workflow: openshift-upgrade-aws
@@ -219,7 +220,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/parallel
     pre:
     - chain: ipi-aws-pre
@@ -227,6 +228,7 @@ tests:
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-aws-multitenant
   optional: true

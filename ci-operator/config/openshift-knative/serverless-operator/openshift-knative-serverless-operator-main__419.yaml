@@ -128,7 +128,7 @@ releases:
   latest:
     release:
       channel: fast
-      version: "4.19"
+      version: '4.19'
 resources:
   '*':
     limits:
@@ -144,7 +144,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   optional: true
   skip_if_only_changed: ^.tekton/.*|^.konflux.*|^.github/.*|^rpms.lock.yaml$|^hack/(lib$|[^l].*|l[^i].*|li[^b].*|lib[^/].*)|^OWNERS.*|.*\.md
   steps:
@@ -154,8 +154,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -165,8 +165,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -199,8 +198,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make kitchensink-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make kitchensink-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -224,6 +222,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: kitchensink-e2e-c
   cluster_claim:
@@ -232,7 +231,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 1 3 * * 1,5
   steps:
     allow_best_effort_post_steps: true
@@ -241,8 +240,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -252,8 +251,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -286,8 +284,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make kitchensink-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make kitchensink-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -311,6 +308,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: kitchensink-upgrade
   cluster_claim:
@@ -319,7 +317,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   optional: true
   skip_if_only_changed: ^.tekton/.*|^.konflux.*|^.github/.*|^rpms.lock.yaml$|^hack/(lib$|[^l].*|l[^i].*|li[^b].*|lib[^/].*)|^OWNERS.*|.*\.md
   steps:
@@ -329,8 +327,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -340,8 +338,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -374,8 +371,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make kitchensink-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make kitchensink-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -399,6 +395,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: kitchensink-upgrade-c
   cluster_claim:
@@ -407,7 +404,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 18 3 * * 1,5
   steps:
     allow_best_effort_post_steps: true
@@ -416,8 +413,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -427,8 +424,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -461,8 +457,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make kitchensink-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make kitchensink-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -486,6 +481,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: mesh-e2e
   cluster_claim:
@@ -494,7 +490,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   optional: true
   skip_if_only_changed: ^.tekton/.*|^.konflux.*|^.github/.*|^rpms.lock.yaml$|^hack/(lib$|[^l].*|l[^i].*|li[^b].*|lib[^/].*)|^OWNERS.*|.*\.md
   steps:
@@ -504,8 +500,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -515,8 +511,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -549,8 +544,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make mesh-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make mesh-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -574,6 +568,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: mesh-e2e-c
   cluster_claim:
@@ -582,7 +577,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 44 2 * * 1,5
   steps:
     allow_best_effort_post_steps: true
@@ -591,8 +586,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -602,8 +597,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -636,8 +630,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make mesh-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make mesh-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -661,6 +654,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: mesh-upgrade
   cluster_claim:
@@ -669,7 +663,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   optional: true
   skip_if_only_changed: ^.tekton/.*|^.konflux.*|^.github/.*|^rpms.lock.yaml$|^hack/(lib$|[^l].*|l[^i].*|li[^b].*|lib[^/].*)|^OWNERS.*|.*\.md
   steps:
@@ -679,8 +673,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -690,8 +684,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -724,8 +717,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make mesh-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make mesh-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -749,6 +741,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: operator-e2e
   cluster_claim:
@@ -757,7 +750,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   skip_if_only_changed: ^.tekton/.*|^.konflux.*|^.github/.*|^rpms.lock.yaml$|^hack/(lib$|[^l].*|l[^i].*|li[^b].*|lib[^/].*)|^OWNERS.*|.*\.md
   steps:
     allow_best_effort_post_steps: true
@@ -766,8 +759,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -777,8 +770,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -811,8 +803,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make operator-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make operator-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -836,6 +827,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: operator-e2e-c
   cluster_claim:
@@ -844,7 +836,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 57 0 * * 1,5
   steps:
     allow_best_effort_post_steps: true
@@ -853,8 +845,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -864,8 +856,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -898,8 +889,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make operator-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make operator-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -923,6 +913,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: test-soak
   cluster_claim:
@@ -931,7 +922,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   optional: true
   run_if_changed: test/soak
   steps:
@@ -941,8 +932,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -952,8 +943,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -986,8 +976,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-soak
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-soak
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1011,6 +1000,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: test-soak-c
   cluster_claim:
@@ -1019,7 +1009,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 45 5 * * 1,5
   steps:
     allow_best_effort_post_steps: true
@@ -1028,8 +1018,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1039,8 +1029,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1073,8 +1062,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-soak
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-soak
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1098,6 +1086,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: test-upgrade
   cluster_claim:
@@ -1106,7 +1095,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   skip_if_only_changed: ^.tekton/.*|^.konflux.*|^.github/.*|^rpms.lock.yaml$|^hack/(lib$|[^l].*|l[^i].*|li[^b].*|lib[^/].*)|^OWNERS.*|.*\.md
   steps:
     allow_best_effort_post_steps: true
@@ -1115,8 +1104,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1126,8 +1115,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1160,8 +1148,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1185,6 +1172,7 @@ tests:
           cpu: 100m
       timeout: 1h30m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: test-upgrade-c
   cluster_claim:
@@ -1193,7 +1181,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 32 2 * * 1,5
   steps:
     allow_best_effort_post_steps: true
@@ -1202,8 +1190,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1213,8 +1201,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1247,8 +1234,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1272,6 +1258,7 @@ tests:
           cpu: 100m
       timeout: 1h30m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: ui-e2e
   cluster_claim:
@@ -1280,7 +1267,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   optional: true
   run_if_changed: test/ui
   steps:
@@ -1290,8 +1277,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1301,8 +1288,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1335,8 +1321,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make ui-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make ui-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1360,6 +1345,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: ui-e2e-c
   cluster_claim:
@@ -1368,7 +1354,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 36 4 * * 1,5
   steps:
     allow_best_effort_post_steps: true
@@ -1377,8 +1363,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1388,8 +1374,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1422,8 +1407,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make ui-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make ui-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1447,6 +1431,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: upstream-e2e
   cluster_claim:
@@ -1455,7 +1440,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   optional: true
   skip_if_only_changed: ^.tekton/.*|^.konflux.*|^.github/.*|^rpms.lock.yaml$|^hack/(lib$|[^l].*|l[^i].*|li[^b].*|lib[^/].*)|^OWNERS.*|.*\.md
   steps:
@@ -1465,8 +1450,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1476,8 +1461,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1510,8 +1494,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make upstream-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make upstream-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1535,6 +1518,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: upstream-e2e-kafka
   cluster_claim:
@@ -1543,7 +1527,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   optional: true
   skip_if_only_changed: ^.tekton/.*|^.konflux.*|^.github/.*|^rpms.lock.yaml$|^hack/(lib$|[^l].*|l[^i].*|li[^b].*|lib[^/].*)|^OWNERS.*|.*\.md
   steps:
@@ -1553,8 +1537,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1564,8 +1548,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1598,8 +1581,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make upstream-e2e-kafka
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make upstream-e2e-kafka
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1623,6 +1605,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: upstream-e2e-kafka-c
   cluster_claim:
@@ -1631,7 +1614,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 58 2 * * 1,5
   steps:
     allow_best_effort_post_steps: true
@@ -1640,8 +1623,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1651,8 +1634,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1685,8 +1667,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make upstream-e2e-kafka
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make upstream-e2e-kafka
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1710,9 +1691,10 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 zz_generated_metadata:
   branch: main
   org: openshift-knative
   repo: serverless-operator
-  variant: "419"
+  variant: '419'

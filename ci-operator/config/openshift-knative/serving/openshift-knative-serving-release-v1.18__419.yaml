@@ -276,7 +276,7 @@ releases:
   latest:
     release:
       channel: fast
-      version: "4.19"
+      version: '4.19'
 resources:
   '*':
     requests:
@@ -290,7 +290,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   skip_if_only_changed: ^.tekton/.*|^.konflux.*|^.github/.*|^rpms.lock.yaml$|^hack/(lib$|[^l].*|l[^i].*|li[^b].*|lib[^/].*)|^OWNERS.*|.*\.md
   steps:
     allow_best_effort_post_steps: true
@@ -299,8 +299,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-serving-source-image
       optional_on_success: true
       resources:
@@ -310,8 +310,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-serving-source-image
       optional_on_success: true
       resources:
@@ -344,8 +343,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-e2e
       dependencies:
       - env: KNATIVE_SERVING_ACTIVATOR
         name: knative-serving-activator
@@ -411,6 +409,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - as: test-e2e-c
   cluster_claim:
@@ -419,7 +418,7 @@ tests:
     owner: serverless-ci
     product: ocp
     timeout: 2h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 32 2 * * 2,6
   steps:
     allow_best_effort_post_steps: true
@@ -428,8 +427,8 @@ tests:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-serving-source-image
       optional_on_success: false
       resources:
@@ -439,8 +438,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-serving-source-image
       optional_on_success: false
       resources:
@@ -473,8 +471,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-e2e
       dependencies:
       - env: KNATIVE_SERVING_ACTIVATOR
         name: knative-serving-activator
@@ -540,9 +537,10 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 zz_generated_metadata:
   branch: release-v1.18
   org: openshift-knative
   repo: serving
-  variant: "419"
+  variant: '419'

@@ -12,12 +12,12 @@ releases:
     candidate:
       product: ocp
       stream: ci
-      version: "4.19"
+      version: '4.19'
   latest:
     candidate:
       product: ocp
       stream: ci
-      version: "4.20"
+      version: '4.20'
 resources:
   '*':
     requests:
@@ -45,7 +45,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -68,7 +68,7 @@ tests:
   steps:
     cluster_profile: gcp-3
     env:
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -91,7 +91,7 @@ tests:
     cluster_profile: azure-2
     env:
       CONTROL_PLANE_INSTANCE_TYPE: Standard_D8as_v5
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -109,13 +109,14 @@ tests:
     - ref: ipi-conf-user-workload-monitoring
     - chain: ipi-aws-pre-stableinitial
     workflow: openshift-upgrade-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-azure-runc-upgrade
   cron: '@weekly'
   steps:
     cluster_profile: azure-2
     env:
       CONTROL_PLANE_INSTANCE_TYPE: Standard_D8as_v5
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -126,7 +127,7 @@ tests:
   steps:
     cluster_profile: gcp-3
     env:
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -137,7 +138,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:

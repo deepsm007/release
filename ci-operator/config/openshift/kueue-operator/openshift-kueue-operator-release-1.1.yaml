@@ -58,7 +58,7 @@ releases:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.20"
+      version: '4.20'
 resources:
   '*':
     requests:
@@ -101,7 +101,7 @@ tests:
     owner: openshift-ci
     product: ocp
     timeout: 1h0m0s
-    version: "4.18"
+    version: '4.18'
   minimum_interval: 96h
   presubmit: true
   steps:
@@ -120,7 +120,7 @@ tests:
     owner: openshift-ci
     product: ocp
     timeout: 1h0m0s
-    version: "4.19"
+    version: '4.19'
   minimum_interval: 96h
   presubmit: true
   steps:
@@ -139,7 +139,7 @@ tests:
     owner: openshift-ci
     product: ocp
     timeout: 1h0m0s
-    version: "4.20"
+    version: '4.20'
   minimum_interval: 96h
   presubmit: true
   steps:
@@ -159,7 +159,7 @@ tests:
       BUNDLE_COMPONENT: kueue-bundle-1-1
       CATSRC_IMG: registry.redhat.io/redhat/redhat-operator-index:v4.19
       CATSRC_NAME: redhat-operators
-      MIRROR_OPERATORS: "true"
+      MIRROR_OPERATORS: 'true'
       MUST_GATHER_COMPONENT: kueue-must-gather-1-1
       OPERAND_COMPONENT: kueue-0-12
       OPERATOR_COMPONENT: kueue-operator-1-1
@@ -199,6 +199,7 @@ tests:
           cpu: 300m
           memory: 500Mi
     workflow: cucushift-installer-rehearse-gcp-ipi-disconnected
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: release-1.1
   org: openshift

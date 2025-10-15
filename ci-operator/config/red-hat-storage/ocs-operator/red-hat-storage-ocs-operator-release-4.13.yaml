@@ -81,7 +81,7 @@ tests:
       OO_INSTALL_NAMESPACE: openshift-storage
       OO_PACKAGE: ocs-operator
       OO_TARGET_NAMESPACES: '!install'
-      ZONES_COUNT: "3"
+      ZONES_COUNT: '3'
     post:
     - as: ocs-must-gather
       cli: latest
@@ -110,6 +110,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: optional-operators-ci-aws
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: release-4.13
   org: red-hat-storage

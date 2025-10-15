@@ -17,13 +17,13 @@ releases:
     release:
       architecture: amd64
       channel: fast
-      version: "4.18"
+      version: '4.18'
   target:
     candidate:
       architecture: amd64
       product: ocp
       stream: nightly
-      version: "4.19"
+      version: '4.19'
 resources:
   '*':
     requests:
@@ -36,16 +36,16 @@ tests:
     allow_skip_on_success: true
     cluster_profile: vsphere-connected-2
     env:
-      CHURN: "false"
-      GC: "false"
-      ITERATION_MULTIPLIER_ENV: "9"
-      MAX_UNAVAILABLE_WORKER: "3"
-      OPENSHIFT_INFRA_NODE_CPU_CORE_PER_SOCKET_COUNT: "2"
-      OPENSHIFT_INFRA_NODE_CPU_COUNT: "16"
-      OPENSHIFT_INFRA_NODE_MEMORY_SIZE: "65536"
-      OPENSHIFT_INFRA_NODE_VOLUME_SIZE: "120"
+      CHURN: 'false'
+      GC: 'false'
+      ITERATION_MULTIPLIER_ENV: '9'
+      MAX_UNAVAILABLE_WORKER: '3'
+      OPENSHIFT_INFRA_NODE_CPU_CORE_PER_SOCKET_COUNT: '2'
+      OPENSHIFT_INFRA_NODE_CPU_COUNT: '16'
+      OPENSHIFT_INFRA_NODE_MEMORY_SIZE: '65536'
+      OPENSHIFT_INFRA_NODE_VOLUME_SIZE: '120'
       SET_ENV_BY_PLATFORM: custom
-      WORKER_REPLICA_COUNT: "24"
+      WORKER_REPLICA_COUNT: '24'
     post:
     - ref: openshift-qe-kube-burner-index
     test:
@@ -54,6 +54,7 @@ tests:
     - chain: openshift-qe-cluster-density-v2
     - chain: openshift-upgrade-qe-sanity
     workflow: openshift-qe-installer-vsphere-ipi-ovn
+    allow_pre_post_step_overrides: true
   timeout: 8h0m0s
 - always_run: false
   as: loaded-upgrade-418to419-12nodes-udn
@@ -61,17 +62,17 @@ tests:
     allow_skip_on_success: true
     cluster_profile: vsphere-connected-2
     env:
-      CHURN: "false"
-      GC: "false"
-      ITERATION_MULTIPLIER_ENV: "9"
-      MAX_UNAVAILABLE_WORKER: "3"
-      OPENSHIFT_INFRA_NODE_CPU_CORE_PER_SOCKET_COUNT: "2"
-      OPENSHIFT_INFRA_NODE_CPU_COUNT: "16"
-      OPENSHIFT_INFRA_NODE_MEMORY_SIZE: "65536"
-      OPENSHIFT_INFRA_NODE_VOLUME_SIZE: "120"
+      CHURN: 'false'
+      GC: 'false'
+      ITERATION_MULTIPLIER_ENV: '9'
+      MAX_UNAVAILABLE_WORKER: '3'
+      OPENSHIFT_INFRA_NODE_CPU_CORE_PER_SOCKET_COUNT: '2'
+      OPENSHIFT_INFRA_NODE_CPU_COUNT: '16'
+      OPENSHIFT_INFRA_NODE_MEMORY_SIZE: '65536'
+      OPENSHIFT_INFRA_NODE_VOLUME_SIZE: '120'
       SET_ENV_BY_PLATFORM: custom
-      VERSION: "4.18"
-      WORKER_REPLICA_COUNT: "12"
+      VERSION: '4.18'
+      WORKER_REPLICA_COUNT: '12'
     post:
     - ref: openshift-qe-kube-burner-index
     test:
@@ -80,6 +81,7 @@ tests:
     - chain: openshift-qe-udn-density-pods
     - chain: openshift-upgrade-qe-sanity
     workflow: openshift-qe-installer-vsphere-ipi-ovn
+    allow_pre_post_step_overrides: true
   timeout: 8h0m0s
 zz_generated_metadata:
   branch: main_vsphere-4.19-nightly-x86-loaded-upgrade-from-4.18

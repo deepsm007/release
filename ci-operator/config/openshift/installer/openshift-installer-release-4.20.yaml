@@ -254,13 +254,13 @@ releases:
       architecture: multi
       product: ocp
       stream: nightly
-      version: "4.20"
+      version: '4.20'
   ppc64le-latest:
     candidate:
       architecture: ppc64le
       product: ocp
       stream: nightly
-      version: "4.20"
+      version: '4.20'
 resources:
   '*':
     requests:
@@ -268,31 +268,31 @@ resources:
       memory: 200Mi
   baremetal-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   govet:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   libvirt-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   openstack-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   unit:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   upi-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
 test_binary_build_commands: |
   # Some agent-based installer tests require nmstatectl
@@ -341,7 +341,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       USER_TAGS: |
         keyA valueA
         key2 value2
@@ -355,7 +355,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       FEATURE_SET: TechPreviewNoUpgrade
       USER_TAGS: |
         keyA valueA
@@ -410,15 +410,13 @@ tests:
   steps:
     cluster_profile: aws-qe
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       FEATURE_SET: TechPreviewNoUpgrade
-      TEST_SKIPS: DNS should provide DNS for the cluster \| Aggregator Should be able
-        to support the 1.17 Sample API Server using the current Aggregator \| Ensure
-        HTTPRoute object is created \| Ensure LB, service, and dnsRecord are created
-        for a Gateway object \| The HAProxy router should pass the http2 tests \|
-        The HAProxy router should pass the gRPC interoperability tests \| Services
-        should fail health check node port if there are only terminating endpoints
-      USER_PROVISIONED_DNS: "yes"
+      TEST_SKIPS: DNS should provide DNS for the cluster \| Aggregator Should be able to support the 1.17 Sample API Server
+        using the current Aggregator \| Ensure HTTPRoute object is created \| Ensure LB, service, and dnsRecord are created
+        for a Gateway object \| The HAProxy router should pass the http2 tests \| The HAProxy router should pass the gRPC
+        interoperability tests \| Services should fail health check node port if there are only terminating endpoints
+      USER_PROVISIONED_DNS: 'yes'
     workflow: openshift-e2e-aws-custom-dns
   timeout: 6h0m0s
 - always_run: false
@@ -435,7 +433,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     post:
     - chain: ipi-aws-post
     - ref: ipi-deprovision-aws-custom-security-groups
@@ -456,7 +454,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     post:
     - chain: ipi-aws-post
     - ref: aws-deprovision-iam-profile
@@ -480,7 +478,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     post:
     - chain: ipi-aws-post
     pre:
@@ -496,7 +494,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     workflow: openshift-e2e-aws-edge-zones
   timeout: 6h0m0s
 - always_run: false
@@ -506,7 +504,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     workflow: openshift-e2e-aws-edge-zones-byo-vpc
   timeout: 6h0m0s
 - always_run: true
@@ -523,7 +521,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       AWS_METADATA_SERVICE_AUTH: Required
     workflow: openshift-e2e-aws
   timeout: 6h0m0s
@@ -534,9 +532,9 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      ADDITIONAL_SUBNETS_COUNT: "1"
-      ASSIGN_ROLES_TO_SUBNETS: "yes"
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      ADDITIONAL_SUBNETS_COUNT: '1'
+      ASSIGN_ROLES_TO_SUBNETS: 'yes'
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       SUBNET_ROLES: |-
         [
           [
@@ -550,7 +548,7 @@ tests:
             }
           ]
         ]
-      ZONES_COUNT: "1"
+      ZONES_COUNT: '1'
     post:
     - chain: cucushift-installer-rehearse-aws-ipi-deprovision
     - ref: aws-deprovision-security-group
@@ -602,13 +600,11 @@ tests:
     cluster_profile: gcp-qe
     env:
       FEATURE_SET: TechPreviewNoUpgrade
-      TEST_SKIPS: DNS should provide DNS for the cluster \| Aggregator Should be able
-        to support the 1.17 Sample API Server using the current Aggregator \| Ensure
-        HTTPRoute object is created \| Ensure LB, service, and dnsRecord are created
-        for a Gateway object \| The HAProxy router should pass the http2 tests \|
-        The HAProxy router should pass the gRPC interoperability tests \| Services
-        should fail health check node port if there are only terminating endpoints
-      USER_PROVISIONED_DNS: "yes"
+      TEST_SKIPS: DNS should provide DNS for the cluster \| Aggregator Should be able to support the 1.17 Sample API Server
+        using the current Aggregator \| Ensure HTTPRoute object is created \| Ensure LB, service, and dnsRecord are created
+        for a Gateway object \| The HAProxy router should pass the http2 tests \| The HAProxy router should pass the gRPC
+        interoperability tests \| Services should fail health check node port if there are only terminating endpoints
+      USER_PROVISIONED_DNS: 'yes'
     workflow: openshift-e2e-gcp-custom-dns
   timeout: 6h0m0s
 - always_run: false
@@ -634,7 +630,7 @@ tests:
   steps:
     cluster_profile: azure4
     env:
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     post:
     - chain: ipi-azure-post
     pre:
@@ -660,7 +656,7 @@ tests:
   steps:
     cluster_profile: azure4
     env:
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       FEATURE_SET: TechPreviewNoUpgrade
       USER_TAGS: |
         keyA valueA
@@ -675,7 +671,7 @@ tests:
   steps:
     cluster_profile: azure4
     env:
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     workflow: openshift-e2e-azure-sharednetwork
   timeout: 6h0m0s
 - always_run: false
@@ -684,7 +680,7 @@ tests:
   steps:
     cluster_profile: azure4
     env:
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     workflow: openshift-e2e-azure-resourcegroup
   timeout: 6h0m0s
 - always_run: false
@@ -694,7 +690,7 @@ tests:
     cluster_profile: azure4
     env:
       AZURE_CONTROL_PLANE_MULTIDISK_TYPE: etcd
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       FEATURE_SET: TechPreviewNoUpgrade
       USER_TAGS: |
         keyA valueA
@@ -856,11 +852,10 @@ tests:
     env:
       CONFIG_TYPE: dual-stack-upi
       OPENSTACK_COMPUTE_FLAVOR: m1.xlarge
-      OPENSTACK_TEST_SKIPS: The OpenStack platform creates Worker nodes in a server
-        group\|The OpenStack platform creates Control plane nodes in a server group
-      TEST_SKIPS: Services Secondary IP Family \[LinuxOnly\] should function for service
-        endpoints using hostNetwork\| Services Secondary IP Family \[LinuxOnly\] should
-        function for node-Service\| Services Secondary IP Family \[LinuxOnly\] should
+      OPENSTACK_TEST_SKIPS: The OpenStack platform creates Worker nodes in a server group\|The OpenStack platform creates
+        Control plane nodes in a server group
+      TEST_SKIPS: Services Secondary IP Family \[LinuxOnly\] should function for service endpoints using hostNetwork\| Services
+        Secondary IP Family \[LinuxOnly\] should function for node-Service\| Services Secondary IP Family \[LinuxOnly\] should
         function for pod-Service
     workflow: openshift-e2e-openstack-upi
   timeout: 6h0m0s
@@ -962,8 +957,8 @@ tests:
     cluster_profile: vsphere-elastic
     env:
       FEATURE_SET: TechPreviewNoUpgrade
-      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\|
-        In-tree Volumes \[Driver: vsphere\] \[Testpattern: Pre-provisioned PV'
+      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\| In-tree Volumes \[Driver: vsphere\]
+        \[Testpattern: Pre-provisioned PV'
     workflow: openshift-e2e-vsphere
   timeout: 6h0m0s
 - always_run: false
@@ -990,7 +985,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      MULTI_NIC_IPI: "true"
+      MULTI_NIC_IPI: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -1001,7 +996,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      ADDITIONAL_DISK: "true"
+      ADDITIONAL_DISK: 'true'
     workflow: openshift-e2e-vsphere
   timeout: 6h0m0s
 - always_run: false
@@ -1011,8 +1006,8 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      ADDITIONAL_DISK: "true"
-      DISK_SETUP: "true"
+      ADDITIONAL_DISK: 'true'
+      DISK_SETUP: 'true'
       FEATURE_SET: TechPreviewNoUpgrade
     workflow: openshift-e2e-vsphere
   timeout: 6h0m0s
@@ -1066,12 +1061,12 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      CSI_MANAGEMENT_REMOVED: "true"
+      CSI_MANAGEMENT_REMOVED: 'true'
       FEATURE_GATES: '["VSphereMixedNodeEnv=true"]'
       FEATURE_SET: CustomNoUpgrade
       NETWORK_TYPE: multi-tenant
-      PERSISTENT_MONITORING: "false"
-      SETUP_IMAGE_REGISTRY_WITH_PVC: "false"
+      PERSISTENT_MONITORING: 'false'
+      SETUP_IMAGE_REGISTRY_WITH_PVC: 'false'
       TEST_SKIPS: \[sig-storage\]\|\[sig-arch\]\[Early\] Operators low level operators
     workflow: openshift-e2e-vsphere-hybrid-env
   timeout: 6h0m0s
@@ -1114,7 +1109,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/parallel
     pre:
     - chain: ipi-aws-pre
@@ -1122,6 +1117,7 @@ tests:
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 6h0m0s
 - always_run: false
   as: e2e-azurestack
@@ -1194,7 +1190,7 @@ tests:
         export AUTH_FILE=/var/secrets/registry-pull-secret/.dockerconfigjson
         hack/go-integration-test.sh
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/secrets/registry-pull-secret
         name: registry-pull-credentials
         namespace: test-credentials
@@ -1336,7 +1332,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      CLUSTER_NETWORK_MTU: "1200"
+      CLUSTER_NETWORK_MTU: '1200'
     workflow: openshift-e2e-aws-network-mtu
   timeout: 6h0m0s
 - always_run: false
@@ -1348,8 +1344,8 @@ tests:
     cluster_profile: azure4
     env:
       AZURE_IDENTITY_TYPE_DEFAULT_MACHINE: None
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
-      FAIL_ON_CORE_DUMP: "false"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
+      FAIL_ON_CORE_DUMP: 'false'
       OS_IMAGE_PLAN: NoPurchasePlan
       OS_IMAGE_URN: azureopenshift:aro4:aro_417:417.94.20240701
     post:
@@ -1431,7 +1427,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      PLATFORM_EXTERNAL_CCM_ENABLED: "yes"
+      PLATFORM_EXTERNAL_CCM_ENABLED: 'yes'
     workflow: openshift-e2e-external-aws
   timeout: 6h0m0s
 - always_run: false
@@ -1445,17 +1441,13 @@ tests:
     env:
       COMPUTE_ARCH: amd64
       CONTROL_ARCH: arm64
-      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\|
-        FIPS TestFIPS\| Multi-stage image builds should succeed\| Optimized image
-        builds should succeed\| build can reference a cluster service\| custom build
-        with buildah\| oc new-app should succeed\| prune builds based on settings\|
-        s2i build with a root\| verify /run filesystem contents\| oc can run\| oc
-        debug\| oc idle\| Pods cannot access\| Image append should create\| Image
-        extract should extract\| Image info should display\| Image layer subresource\|
-        oc tag should change image\| when installed on the cluster should\| OpenShift
-        alerting rules\| The HAProxy router should\| egressrouter cni resources\|
-        pod should start\| pod sysctls\| build volumes should mount given secrets
-        and configmaps into the build pod
+      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\| FIPS TestFIPS\| Multi-stage image
+        builds should succeed\| Optimized image builds should succeed\| build can reference a cluster service\| custom build
+        with buildah\| oc new-app should succeed\| prune builds based on settings\| s2i build with a root\| verify /run filesystem
+        contents\| oc can run\| oc debug\| oc idle\| Pods cannot access\| Image append should create\| Image extract should
+        extract\| Image info should display\| Image layer subresource\| oc tag should change image\| when installed on the
+        cluster should\| OpenShift alerting rules\| The HAProxy router should\| egressrouter cni resources\| pod should start\|
+        pod sysctls\| build volumes should mount given secrets and configmaps into the build pod
     workflow: openshift-e2e-aws-heterogeneous-day-0
   timeout: 6h0m0s
 - always_run: false
@@ -1468,17 +1460,13 @@ tests:
     env:
       COMPUTE_ARCH: amd64
       CONTROL_ARCH: arm64
-      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\|
-        FIPS TestFIPS\| Multi-stage image builds should succeed\| Optimized image
-        builds should succeed\| build can reference a cluster service\| custom build
-        with buildah\| oc new-app should succeed\| prune builds based on settings\|
-        s2i build with a root\| verify /run filesystem contents\| oc can run\| oc
-        debug\| oc idle\| Pods cannot access\| Image append should create\| Image
-        extract should extract\| Image info should display\| Image layer subresource\|
-        oc tag should change image\| when installed on the cluster should\| OpenShift
-        alerting rules\| The HAProxy router should\| egressrouter cni resources\|
-        pod should start\| pod sysctls\| build volumes should mount given secrets
-        and configmaps into the build pod
+      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\| FIPS TestFIPS\| Multi-stage image
+        builds should succeed\| Optimized image builds should succeed\| build can reference a cluster service\| custom build
+        with buildah\| oc new-app should succeed\| prune builds based on settings\| s2i build with a root\| verify /run filesystem
+        contents\| oc can run\| oc debug\| oc idle\| Pods cannot access\| Image append should create\| Image extract should
+        extract\| Image info should display\| Image layer subresource\| oc tag should change image\| when installed on the
+        cluster should\| OpenShift alerting rules\| The HAProxy router should\| egressrouter cni resources\| pod should start\|
+        pod sysctls\| build volumes should mount given secrets and configmaps into the build pod
     workflow: openshift-e2e-gcp-ovn
   timeout: 6h0m0s
 - always_run: false
@@ -1505,7 +1493,7 @@ tests:
 - as: verify-deps
   steps:
     env:
-      CHECK_MOD_LIST: "false"
+      CHECK_MOD_LIST: 'false'
     test:
     - ref: go-verify-deps
 - always_run: false

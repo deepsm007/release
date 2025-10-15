@@ -114,7 +114,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
@@ -127,19 +127,21 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-aws-ovn-fips
   optional: true
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-aws-ovn
   skip_if_only_changed: ^docs/|\.md$|^(?:.*/)?(?:\.gitignore|OWNERS|OWNERS_ALIASES|LICENSE)$
   steps:
@@ -181,7 +183,7 @@ tests:
   steps:
     cluster_profile: gcp-3
     env:
-      RT_ENABLED: "true"
+      RT_ENABLED: 'true'
     test:
     - as: test
       cli: latest
@@ -218,7 +220,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     workflow: openshift-e2e-aws-workers-rhel
 - always_run: false
   as: e2e-aws-ovn-workers-rhel8
@@ -226,7 +228,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     workflow: openshift-e2e-aws-ovn-workers-rhel
 - always_run: false
   as: e2e-aws-disruptive
@@ -341,7 +343,7 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      RT_ENABLED: "true"
+      RT_ENABLED: 'true'
     workflow: openshift-e2e-gcp
 - always_run: false
   as: e2e-gcp-single-node

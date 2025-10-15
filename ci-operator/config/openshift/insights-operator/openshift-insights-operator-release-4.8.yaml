@@ -71,7 +71,7 @@ tests:
       cli: latest
       commands: pytest.sh -m "not ui"
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /secrets
         name: insights-qa
         namespace: test-credentials
@@ -80,6 +80,7 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-gcp
+    allow_pre_post_step_overrides: true
 - as: insights-operator-e2e-tests-periodic
   cron: 50 23 12 3 *
   steps:
@@ -92,7 +93,7 @@ tests:
       cli: latest
       commands: pytest.sh --junitxml=${ARTIFACT_DIR}/test-report.xml
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /secrets
         name: insights-qa
         namespace: test-credentials
@@ -101,6 +102,7 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-gcp
+    allow_pre_post_step_overrides: true
 - as: insights-operator-test-time-periodic
   cron: 53 8 23 * *
   steps:
@@ -117,6 +119,7 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-gcp
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: release-4.8
   org: openshift

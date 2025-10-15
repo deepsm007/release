@@ -40,7 +40,7 @@ tests:
     owner: pipelines
     product: ocp
     timeout: 1h0m0s
-    version: "4.16"
+    version: '4.16'
   skip_if_only_changed: ^(LICENSE|OWNERS|README\.md|\.gitignore|\.goreleaser\.yaml)$|^docs/|^subsystem/|^examples/\^.github/
   steps:
     allow_best_effort_post_steps: true
@@ -49,8 +49,7 @@ tests:
     - as: openshift-pipelines-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-pipeline/must-gather
-        --dest-dir "${ARTIFACT_DIR}/gather-openshift-pipelines"
+      commands: oc adm must-gather --image=quay.io/openshift-pipeline/must-gather --dest-dir "${ARTIFACT_DIR}/gather-openshift-pipelines"
       from: base-tests
       optional_on_success: false
       resources:
@@ -89,6 +88,7 @@ tests:
         requests:
           cpu: 100m
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
 - as: osp-115-ocp-416-e2e
   cluster: build05
   cluster_claim:
@@ -98,7 +98,7 @@ tests:
     owner: pipelines
     product: ocp
     timeout: 1h0m0s
-    version: "4.16"
+    version: '4.16'
   skip_if_only_changed: ^(LICENSE|OWNERS|README\.md|\.gitignore|\.goreleaser\.yaml)$|^docs/|^subsystem/|^examples/\^.github/
   steps:
     allow_best_effort_post_steps: true
@@ -107,8 +107,7 @@ tests:
     - as: openshift-pipelines-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-pipeline/must-gather
-        --dest-dir "${ARTIFACT_DIR}/gather-openshift-pipelines"
+      commands: oc adm must-gather --image=quay.io/openshift-pipeline/must-gather --dest-dir "${ARTIFACT_DIR}/gather-openshift-pipelines"
       from: base-tests
       optional_on_success: false
       resources:
@@ -147,6 +146,7 @@ tests:
         requests:
           cpu: 100m
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
 - as: osp-nightly-ocp-416-e2e
   cluster: build05
   cluster_claim:
@@ -156,7 +156,7 @@ tests:
     owner: pipelines
     product: ocp
     timeout: 1h0m0s
-    version: "4.16"
+    version: '4.16'
   skip_if_only_changed: ^(LICENSE|OWNERS|README\.md|\.gitignore|\.goreleaser\.yaml)$|^docs/|^subsystem/|^examples/\^.github/
   steps:
     allow_best_effort_post_steps: true
@@ -165,8 +165,7 @@ tests:
     - as: openshift-pipelines-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-pipeline/must-gather
-        --dest-dir "${ARTIFACT_DIR}/gather-openshift-pipelines"
+      commands: oc adm must-gather --image=quay.io/openshift-pipeline/must-gather --dest-dir "${ARTIFACT_DIR}/gather-openshift-pipelines"
       from: base-tests
       optional_on_success: false
       resources:
@@ -205,6 +204,7 @@ tests:
         requests:
           cpu: 100m
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: main
   org: openshift-pipelines

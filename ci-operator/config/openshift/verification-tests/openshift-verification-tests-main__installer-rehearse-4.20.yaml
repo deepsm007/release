@@ -28,13 +28,13 @@ releases:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.20"
+      version: '4.20'
   multi-latest:
     candidate:
       architecture: multi
       product: ocp
       stream: nightly
-      version: "4.20"
+      version: '4.20'
 resources:
   '*':
     requests:
@@ -49,8 +49,8 @@ tests:
     env:
       IPSTACK: dualstack
       SLEEP_DURATION: 1h
-      VPC_IPv6_ONLY_PRIVATE_SUBNETS: "yes"
-      ZONES_COUNT: "1"
+      VPC_IPv6_ONLY_PRIVATE_SUBNETS: 'yes'
+      ZONES_COUNT: '1'
     post:
     - ref: aws-deprovision-stacks
     - ref: aws-deprovision-s3buckets
@@ -66,7 +66,7 @@ tests:
     cluster_profile: azure-qe
     env:
       BASE_DOMAIN: qe.azure.devcluster.openshift.com
-      USER_PROVISIONED_DNS: "no"
+      USER_PROVISIONED_DNS: 'no'
     workflow: cucushift-installer-rehearse-azure-ipi-private-customer-dns
 - as: installer-rehearse-ibmcloud
   cron: '@yearly'
@@ -86,7 +86,7 @@ tests:
     env:
       FEATURE_GATES: '["GCPCustomAPIEndpointsInstall=true"]'
       FEATURE_SET: CustomNoUpgrade
-      GCP_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      GCP_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       SLEEP_DURATION: 10m
     post:
     - ref: cucushift-installer-wait
@@ -111,12 +111,13 @@ tests:
     test:
     - chain: cucushift-installer-check-cluster-health
     workflow: cucushift-installer-rehearse-ibmcloud-ipi-disconnected-private
+    allow_pre_post_step_overrides: true
 - as: installer-rehearse-vsphere
   cron: '@yearly'
   steps:
     cluster_profile: vsphere-elastic
     env:
-      MULTI_NIC_IPI: "true"
+      MULTI_NIC_IPI: 'true'
       SLEEP_DURATION: 24h
     post:
     - ref: cucushift-installer-wait
@@ -129,7 +130,7 @@ tests:
   steps:
     cluster_profile: azurestack-qe
     env:
-      EXTRACT_MANIFEST_INCLUDED: "true"
+      EXTRACT_MANIFEST_INCLUDED: 'true'
     workflow: cucushift-installer-rehearse-azure-stack-upi
 zz_generated_metadata:
   branch: main

@@ -138,7 +138,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
@@ -151,19 +151,21 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-aws-ovn-fips
   optional: true
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-aws-ovn
   skip_if_only_changed: ^docs/|\.md$|^(?:.*/)?(?:\.gitignore|OWNERS|OWNERS_ALIASES|LICENSE)$
   steps:
@@ -217,7 +219,7 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      RT_ENABLED: "true"
+      RT_ENABLED: 'true'
     test:
     - as: test
       cli: latest
@@ -353,7 +355,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     workflow: openshift-e2e-aws-workers-rhel
 - always_run: false
   as: e2e-aws-ovn-workers-rhel8
@@ -361,7 +363,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     workflow: openshift-e2e-aws-ovn-workers-rhel
 - always_run: false
   as: e2e-aws-disruptive
@@ -470,7 +472,7 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      RT_ENABLED: "true"
+      RT_ENABLED: 'true'
     workflow: openshift-e2e-gcp
 - always_run: false
   as: e2e-gcp-ovn-rt-upgrade
@@ -543,7 +545,7 @@ tests:
   steps:
     cluster_profile: hypershift
     env:
-      TECH_PREVIEW_NO_UPGRADE: "true"
+      TECH_PREVIEW_NO_UPGRADE: 'true'
     workflow: hypershift-aws-e2e-external
 - always_run: false
   as: e2e-openstack-dualstack
@@ -564,7 +566,7 @@ tests:
     cluster_profile: hypershift
     env:
       CLUSTER_TYPE_OVERRIDE: openstack-vexxhost
-      TECH_PREVIEW_NO_UPGRADE: "true"
+      TECH_PREVIEW_NO_UPGRADE: 'true'
     leases:
     - env: OPENSTACK_CLOUD
       resource_type: openstack-vexxhost-quota-slice
@@ -676,7 +678,7 @@ tests:
 - as: verify-deps
   steps:
     env:
-      CHECK_MOD_LIST: "false"
+      CHECK_MOD_LIST: 'false'
     test:
     - ref: go-verify-deps
 - always_run: false
@@ -685,7 +687,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      CUSTOM_VXLAN_PORT: "true"
+      CUSTOM_VXLAN_PORT: 'true'
     test:
     - ref: windows-e2e-operator-test
     workflow: ipi-aws-ovn-hybrid

@@ -276,7 +276,7 @@ releases:
   latest:
     release:
       channel: fast
-      version: "4.13"
+      version: '4.13'
 resources:
   '*':
     requests:
@@ -291,14 +291,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-source-image
       optional_on_success: true
       resources:
@@ -308,8 +308,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-source-image
       optional_on_success: true
       resources:
@@ -343,8 +342,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-conformance
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-conformance
       dependencies:
       - env: KNATIVE_EVENTING_APISERVER_RECEIVE_ADAPTER
         name: knative-eventing-apiserver-receive-adapter
@@ -410,6 +408,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-conformance-c
@@ -420,14 +419,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-source-image
       optional_on_success: false
       resources:
@@ -437,8 +436,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-source-image
       optional_on_success: false
       resources:
@@ -472,8 +470,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-conformance
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-conformance
       dependencies:
       - env: KNATIVE_EVENTING_APISERVER_RECEIVE_ADAPTER
         name: knative-eventing-apiserver-receive-adapter
@@ -539,6 +536,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-e2e
@@ -548,14 +546,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-source-image
       optional_on_success: true
       resources:
@@ -565,8 +563,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-source-image
       optional_on_success: true
       resources:
@@ -600,8 +597,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-e2e
       dependencies:
       - env: KNATIVE_EVENTING_APISERVER_RECEIVE_ADAPTER
         name: knative-eventing-apiserver-receive-adapter
@@ -667,6 +663,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-e2e-c
@@ -677,14 +674,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-source-image
       optional_on_success: false
       resources:
@@ -694,8 +691,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-source-image
       optional_on_success: false
       resources:
@@ -729,8 +725,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-e2e
       dependencies:
       - env: KNATIVE_EVENTING_APISERVER_RECEIVE_ADAPTER
         name: knative-eventing-apiserver-receive-adapter
@@ -796,6 +791,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-encryption-auth-e2e
@@ -805,14 +801,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-source-image
       optional_on_success: true
       resources:
@@ -822,8 +818,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-source-image
       optional_on_success: true
       resources:
@@ -857,8 +852,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-encryption-auth-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-encryption-auth-e2e
       dependencies:
       - env: KNATIVE_EVENTING_APISERVER_RECEIVE_ADAPTER
         name: knative-eventing-apiserver-receive-adapter
@@ -924,6 +918,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-encryption-auth-e2e-c
@@ -934,14 +929,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-source-image
       optional_on_success: false
       resources:
@@ -951,8 +946,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-source-image
       optional_on_success: false
       resources:
@@ -986,8 +980,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-encryption-auth-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-encryption-auth-e2e
       dependencies:
       - env: KNATIVE_EVENTING_APISERVER_RECEIVE_ADAPTER
         name: knative-eventing-apiserver-receive-adapter
@@ -1053,6 +1046,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-reconciler
@@ -1062,14 +1056,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-source-image
       optional_on_success: true
       resources:
@@ -1079,8 +1073,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-source-image
       optional_on_success: true
       resources:
@@ -1114,8 +1107,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-reconciler
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler
       dependencies:
       - env: KNATIVE_EVENTING_APISERVER_RECEIVE_ADAPTER
         name: knative-eventing-apiserver-receive-adapter
@@ -1181,6 +1173,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-reconciler-c
@@ -1191,14 +1184,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-source-image
       optional_on_success: false
       resources:
@@ -1208,8 +1201,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-source-image
       optional_on_success: false
       resources:
@@ -1243,8 +1235,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-reconciler
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler
       dependencies:
       - env: KNATIVE_EVENTING_APISERVER_RECEIVE_ADAPTER
         name: knative-eventing-apiserver-receive-adapter
@@ -1310,9 +1301,10 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 zz_generated_metadata:
   branch: release-v1.15
   org: openshift-knative
   repo: eventing
-  variant: "413"
+  variant: '413'

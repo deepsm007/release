@@ -56,7 +56,7 @@ resources:
     requests:
       cpu: 100m
       memory: 1Gi
-test_binary_build_commands: "true"
+test_binary_build_commands: 'true'
 tests:
 - as: gofmt
   commands: |
@@ -116,6 +116,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-kind
+    allow_pre_post_step_overrides: true
 - as: sonarcloud
   commands: |
     export TMP_BIN="/tmp/bin"

@@ -128,7 +128,7 @@ releases:
   latest:
     release:
       channel: fast
-      version: "4.14"
+      version: '4.14'
 resources:
   '*':
     limits:
@@ -146,14 +146,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -163,8 +163,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -198,8 +197,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make kitchensink-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make kitchensink-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -223,6 +221,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: kitchensink-e2e-c
@@ -233,14 +232,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -250,8 +249,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -285,8 +283,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make kitchensink-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make kitchensink-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -310,6 +307,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: kitchensink-upgrade
@@ -320,14 +318,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -337,8 +335,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -372,8 +369,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make kitchensink-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make kitchensink-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -397,6 +393,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: kitchensink-upgrade-c
@@ -407,14 +404,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -424,8 +421,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -459,8 +455,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make kitchensink-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make kitchensink-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -484,6 +479,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: mesh-e2e
@@ -494,14 +490,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -511,8 +507,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -546,8 +541,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make mesh-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make mesh-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -571,6 +565,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: mesh-e2e-c
@@ -581,14 +576,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -598,8 +593,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -633,8 +627,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make mesh-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make mesh-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -658,6 +651,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: mesh-upgrade
@@ -668,14 +662,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -685,8 +679,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -720,8 +713,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make mesh-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make mesh-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -745,6 +737,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: operator-e2e
@@ -754,14 +747,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -771,8 +764,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -806,8 +798,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make operator-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make operator-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -831,6 +822,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: operator-e2e-c
@@ -841,14 +833,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -858,8 +850,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -893,8 +884,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make operator-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make operator-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -918,6 +908,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-soak
@@ -929,14 +920,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -946,8 +937,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -981,8 +971,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-soak
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-soak
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1006,6 +995,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-soak-c
@@ -1016,14 +1006,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1033,8 +1023,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1068,8 +1057,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-soak
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-soak
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1093,6 +1081,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-upgrade
@@ -1102,14 +1091,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1119,8 +1108,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1154,8 +1142,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1179,6 +1166,7 @@ tests:
           cpu: 100m
       timeout: 1h30m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-upgrade-c
@@ -1189,14 +1177,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1206,8 +1194,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1241,8 +1228,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-upgrade
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-upgrade
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1266,6 +1252,7 @@ tests:
           cpu: 100m
       timeout: 1h30m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: ui-e2e
@@ -1277,14 +1264,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1294,8 +1281,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1329,8 +1315,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make ui-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make ui-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1354,6 +1339,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: ui-e2e-c
@@ -1364,14 +1350,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1381,8 +1367,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1416,8 +1401,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make ui-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make ui-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1441,6 +1425,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: upstream-e2e
@@ -1451,14 +1436,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1468,8 +1453,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1503,8 +1487,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make upstream-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make upstream-e2e
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1528,6 +1511,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: upstream-e2e-kafka
@@ -1538,14 +1522,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1555,8 +1539,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: true
       resources:
@@ -1590,8 +1573,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make upstream-e2e-kafka
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make upstream-e2e-kafka
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1615,6 +1597,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: upstream-e2e-kafka-c
@@ -1625,14 +1608,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1642,8 +1625,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: serverless-source-image
       optional_on_success: false
       resources:
@@ -1677,8 +1659,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make upstream-e2e-kafka
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make upstream-e2e-kafka
       dependencies:
       - env: SERVERLESS_KNATIVE_OPERATOR
         name: serverless-knative-operator
@@ -1702,9 +1683,10 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 zz_generated_metadata:
   branch: main
   org: openshift-knative
   repo: serverless-operator
-  variant: "414"
+  variant: '414'

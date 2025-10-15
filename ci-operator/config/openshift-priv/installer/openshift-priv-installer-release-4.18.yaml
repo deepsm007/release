@@ -255,13 +255,13 @@ releases:
       architecture: multi
       product: ocp
       stream: nightly
-      version: "4.18"
+      version: '4.18'
   ppc64le-latest:
     candidate:
       architecture: ppc64le
       product: ocp
       stream: nightly
-      version: "4.18"
+      version: '4.18'
 resources:
   '*':
     requests:
@@ -269,35 +269,35 @@ resources:
       memory: 200Mi
   aro-unit:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   baremetal-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   govet:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   libvirt-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   openstack-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   unit:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   upi-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
 test_binary_build_commands: |
   # Some agent-based installer tests require nmstatectl
@@ -351,7 +351,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       USER_TAGS: |
         keyA valueA
         key2 value2
@@ -365,7 +365,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       FEATURE_SET: TechPreviewNoUpgrade
       USER_TAGS: |
         keyA valueA
@@ -394,7 +394,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     post:
     - chain: ipi-aws-post
     - ref: ipi-deprovision-aws-custom-security-groups
@@ -415,7 +415,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     post:
     - chain: ipi-aws-post
     - ref: aws-deprovision-iam-profile
@@ -439,7 +439,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     post:
     - chain: ipi-aws-post
     pre:
@@ -455,7 +455,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     workflow: openshift-e2e-aws-edge-zones
   timeout: 6h0m0s
 - always_run: false
@@ -465,7 +465,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     workflow: openshift-e2e-aws-edge-zones-byo-vpc
   timeout: 6h0m0s
 - always_run: true
@@ -482,7 +482,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AWS_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       AWS_METADATA_SERVICE_AUTH: Required
     workflow: openshift-e2e-aws
   timeout: 6h0m0s
@@ -537,7 +537,7 @@ tests:
   steps:
     cluster_profile: azure4
     env:
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     post:
     - chain: ipi-azure-post
     pre:
@@ -563,7 +563,7 @@ tests:
   steps:
     cluster_profile: azure4
     env:
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       FEATURE_SET: TechPreviewNoUpgrade
       USER_TAGS: |
         keyA valueA
@@ -578,7 +578,7 @@ tests:
   steps:
     cluster_profile: azure4
     env:
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     workflow: openshift-e2e-azure-sharednetwork
   timeout: 6h0m0s
 - always_run: false
@@ -587,7 +587,7 @@ tests:
   steps:
     cluster_profile: azure4
     env:
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
     workflow: openshift-e2e-azure-resourcegroup
   timeout: 6h0m0s
 - always_run: false
@@ -637,7 +637,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     workflow: openshift-e2e-aws-workers-rhel
   timeout: 6h0m0s
 - always_run: false
@@ -726,11 +726,10 @@ tests:
     env:
       CONFIG_TYPE: dual-stack-upi
       OPENSTACK_COMPUTE_FLAVOR: m1.xlarge
-      OPENSTACK_TEST_SKIPS: The OpenStack platform creates Worker nodes in a server
-        group\|The OpenStack platform creates Control plane nodes in a server group
-      TEST_SKIPS: Services Secondary IP Family \[LinuxOnly\] should function for service
-        endpoints using hostNetwork\| Services Secondary IP Family \[LinuxOnly\] should
-        function for node-Service\| Services Secondary IP Family \[LinuxOnly\] should
+      OPENSTACK_TEST_SKIPS: The OpenStack platform creates Worker nodes in a server group\|The OpenStack platform creates
+        Control plane nodes in a server group
+      TEST_SKIPS: Services Secondary IP Family \[LinuxOnly\] should function for service endpoints using hostNetwork\| Services
+        Secondary IP Family \[LinuxOnly\] should function for node-Service\| Services Secondary IP Family \[LinuxOnly\] should
         function for pod-Service
       TEST_SUITE: experimental/reliability/minimal
     workflow: openshift-e2e-openstack-upi
@@ -824,8 +823,8 @@ tests:
     cluster_profile: vsphere-elastic
     env:
       FEATURE_SET: TechPreviewNoUpgrade
-      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\|
-        In-tree Volumes \[Driver: vsphere\] \[Testpattern: Pre-provisioned PV'
+      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\| In-tree Volumes \[Driver: vsphere\]
+        \[Testpattern: Pre-provisioned PV'
     workflow: openshift-e2e-vsphere
   timeout: 6h0m0s
 - always_run: false
@@ -854,7 +853,7 @@ tests:
     env:
       FEATURE_GATES: '["VSphereMultiNetworks=true"]'
       FEATURE_SET: CustomNoUpgrade
-      MULTI_NIC_IPI: "true"
+      MULTI_NIC_IPI: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -942,7 +941,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/parallel
     pre:
     - chain: ipi-aws-pre
@@ -950,6 +949,7 @@ tests:
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 6h0m0s
 - always_run: false
   as: e2e-azurestack
@@ -1022,7 +1022,7 @@ tests:
         export AUTH_FILE=/var/secrets/registry-pull-secret/.dockerconfigjson
         hack/go-integration-test.sh
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/secrets/registry-pull-secret
         name: registry-pull-credentials
         namespace: test-credentials
@@ -1163,7 +1163,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      CLUSTER_NETWORK_MTU: "1200"
+      CLUSTER_NETWORK_MTU: '1200'
     workflow: openshift-e2e-aws-network-mtu
   timeout: 6h0m0s
 - always_run: false
@@ -1174,8 +1174,8 @@ tests:
     allow_best_effort_post_steps: true
     cluster_profile: azure4
     env:
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
-      FAIL_ON_CORE_DUMP: "false"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
+      FAIL_ON_CORE_DUMP: 'false'
       OS_IMAGE_PLAN: NoPurchasePlan
       OS_IMAGE_URN: azureopenshift:aro4:aro_417:417.94.20240701
     post:
@@ -1205,7 +1205,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_EXTERNAL_CCM_ENABLED: "yes"
+      PLATFORM_EXTERNAL_CCM_ENABLED: 'yes'
     workflow: openshift-e2e-external-aws
   timeout: 6h0m0s
 - always_run: false
@@ -1219,17 +1219,13 @@ tests:
     env:
       COMPUTE_ARCH: amd64
       CONTROL_ARCH: arm64
-      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\|
-        FIPS TestFIPS\| Multi-stage image builds should succeed\| Optimized image
-        builds should succeed\| build can reference a cluster service\| custom build
-        with buildah\| oc new-app should succeed\| prune builds based on settings\|
-        s2i build with a root\| verify /run filesystem contents\| oc can run\| oc
-        debug\| oc idle\| Pods cannot access\| Image append should create\| Image
-        extract should extract\| Image info should display\| Image layer subresource\|
-        oc tag should change image\| when installed on the cluster should\| OpenShift
-        alerting rules\| The HAProxy router should\| egressrouter cni resources\|
-        pod should start\| pod sysctls\| build volumes should mount given secrets
-        and configmaps into the build pod
+      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\| FIPS TestFIPS\| Multi-stage image
+        builds should succeed\| Optimized image builds should succeed\| build can reference a cluster service\| custom build
+        with buildah\| oc new-app should succeed\| prune builds based on settings\| s2i build with a root\| verify /run filesystem
+        contents\| oc can run\| oc debug\| oc idle\| Pods cannot access\| Image append should create\| Image extract should
+        extract\| Image info should display\| Image layer subresource\| oc tag should change image\| when installed on the
+        cluster should\| OpenShift alerting rules\| The HAProxy router should\| egressrouter cni resources\| pod should start\|
+        pod sysctls\| build volumes should mount given secrets and configmaps into the build pod
     workflow: openshift-e2e-aws-heterogeneous-day-0
   timeout: 6h0m0s
 - always_run: false
@@ -1242,17 +1238,13 @@ tests:
     env:
       COMPUTE_ARCH: amd64
       CONTROL_ARCH: arm64
-      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\|
-        FIPS TestFIPS\| Multi-stage image builds should succeed\| Optimized image
-        builds should succeed\| build can reference a cluster service\| custom build
-        with buildah\| oc new-app should succeed\| prune builds based on settings\|
-        s2i build with a root\| verify /run filesystem contents\| oc can run\| oc
-        debug\| oc idle\| Pods cannot access\| Image append should create\| Image
-        extract should extract\| Image info should display\| Image layer subresource\|
-        oc tag should change image\| when installed on the cluster should\| OpenShift
-        alerting rules\| The HAProxy router should\| egressrouter cni resources\|
-        pod should start\| pod sysctls\| build volumes should mount given secrets
-        and configmaps into the build pod
+      TEST_SKIPS: deploymentconfigs\| should expose cluster services outside the cluster\| FIPS TestFIPS\| Multi-stage image
+        builds should succeed\| Optimized image builds should succeed\| build can reference a cluster service\| custom build
+        with buildah\| oc new-app should succeed\| prune builds based on settings\| s2i build with a root\| verify /run filesystem
+        contents\| oc can run\| oc debug\| oc idle\| Pods cannot access\| Image append should create\| Image extract should
+        extract\| Image info should display\| Image layer subresource\| oc tag should change image\| when installed on the
+        cluster should\| OpenShift alerting rules\| The HAProxy router should\| egressrouter cni resources\| pod should start\|
+        pod sysctls\| build volumes should mount given secrets and configmaps into the build pod
     workflow: openshift-e2e-gcp-ovn
   timeout: 6h0m0s
 - always_run: false

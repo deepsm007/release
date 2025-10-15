@@ -230,47 +230,47 @@ resources:
       memory: 100Mi
   bin:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 7Gi
   bin-cross:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 8Gi
   cmd:
     requests:
-      cpu: "4"
+      cpu: '4'
       memory: 8Gi
   hyperkube:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 7Gi
   hypershift:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 7Gi
   integration:
     requests:
-      cpu: "6"
+      cpu: '6'
       memory: 14Gi
   k8s-e2e-conformance-aws:
     requests:
-      cpu: "1"
+      cpu: '1'
       memory: 300Mi
   rpms:
     requests:
-      cpu: "4"
+      cpu: '4'
       memory: 8Gi
   tests:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 7Gi
   unit:
     requests:
-      cpu: "6"
+      cpu: '6'
       memory: 8Gi
   verify:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 8Gi
 rpm_build_commands: openshift-hack/build-rpms.sh
 tests:
@@ -306,7 +306,7 @@ tests:
   steps:
     cluster_profile: gcp-openshift-gce-devel-ci-2
     env:
-      CONTROL_PLANE_REPLICAS: "5"
+      CONTROL_PLANE_REPLICAS: '5'
     workflow: openshift-kubernetes-e2e-gcp
 - as: k8s-e2e-gcp-serial
   steps:
@@ -473,7 +473,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/parallel
     pre:
     - chain: ipi-aws-pre
@@ -481,6 +481,7 @@ tests:
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-aws-ovn-hypershift
   run_if_changed: \.go$
   steps:
@@ -539,12 +540,12 @@ tests:
     cluster_profile: aws-perfscale-qe
     env:
       BASE_DOMAIN: qe.devcluster.openshift.com
-      COMPUTE_NODE_REPLICAS: "6"
-      ENABLE_LOCAL_INDEX: "true"
+      COMPUTE_NODE_REPLICAS: '6'
+      ENABLE_LOCAL_INDEX: 'true'
       ES_TYPE: qe
       EXTRA_FLAGS: --churn-duration=20m --pod-ready-threshold=13s
-      ITERATION_MULTIPLIER_ENV: "15"
-      ZONES_COUNT: "3"
+      ITERATION_MULTIPLIER_ENV: '15'
+      ZONES_COUNT: '3'
     test:
     - chain: openshift-qe-control-plane
     - chain: openshift-qe-orion-consolidated
@@ -556,7 +557,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      PLATFORM_EXTERNAL_CCM_ENABLED: "yes"
+      PLATFORM_EXTERNAL_CCM_ENABLED: 'yes'
     observers:
       enable:
       - observers-resource-watch

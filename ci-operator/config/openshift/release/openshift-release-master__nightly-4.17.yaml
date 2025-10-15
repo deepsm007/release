@@ -81,12 +81,12 @@ releases:
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.17"
+      version: '4.17'
   latest:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.17"
+      version: '4.17'
 resources:
   '*':
     requests:
@@ -301,8 +301,8 @@ tests:
     cluster_profile: vsphere-elastic
     env:
       FEATURE_SET: TechPreviewNoUpgrade
-      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\|
-        In-tree Volumes \[Driver: vsphere\] \[Testpattern: Pre-provisioned PV'
+      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\| In-tree Volumes \[Driver: vsphere\]
+        \[Testpattern: Pre-provisioned PV'
     observers:
       enable:
       - observers-resource-watch
@@ -364,8 +364,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -392,8 +391,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -413,8 +411,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -424,8 +421,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -449,8 +445,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -503,7 +498,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     observers:
       enable:
       - observers-resource-watch
@@ -513,7 +508,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     observers:
       enable:
       - observers-resource-watch
@@ -523,7 +518,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -531,6 +526,7 @@ tests:
     - chain: ipi-aws-pre
     - ref: fips-check
     workflow: openshift-e2e-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-ovn-upgrade
   cron: 42 22 22 9 *
   steps:
@@ -546,7 +542,7 @@ tests:
   steps:
     cluster_profile: gcp-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -554,6 +550,7 @@ tests:
     - chain: ipi-gcp-pre
     - ref: fips-check
     workflow: openshift-e2e-gcp
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-ovn-csi
   cron: 24 21 5 11 *
   steps:
@@ -567,7 +564,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     observers:
       enable:
@@ -576,6 +573,7 @@ tests:
     - chain: ipi-aws-pre
     - ref: fips-check
     workflow: openshift-e2e-aws
+    allow_pre_post_step_overrides: true
 - as: console-aws
   cron: 12 10 27 7 *
   steps:
@@ -601,7 +599,7 @@ tests:
     cluster_profile: gcp-3
     env:
       COMPUTE_NODE_TYPE: n2-standard-8
-      RT_ENABLED: "true"
+      RT_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -678,9 +676,9 @@ tests:
   restrict_network_access: false
   steps:
     env:
-      SKIP_OCP_INSTALL: "false"
+      SKIP_OCP_INSTALL: 'false'
       T5CI_JOB_TYPE: ptp
-      T5CI_VERSION: "4.17"
+      T5CI_VERSION: '4.17'
     observers:
       enable:
       - observers-resource-watch
@@ -692,7 +690,7 @@ tests:
   steps:
     env:
       T5CI_JOB_TYPE: network-flow-matrix-bm
-      T5CI_VERSION: "4.17"
+      T5CI_VERSION: '4.17'
     observers:
       enable:
       - observers-resource-watch
@@ -704,7 +702,7 @@ tests:
   steps:
     env:
       T5CI_JOB_TYPE: network-flow-matrix-single-node-bm
-      T5CI_VERSION: "4.17"
+      T5CI_VERSION: '4.17'
     observers:
       enable:
       - observers-resource-watch
@@ -743,11 +741,9 @@ tests:
     cluster_profile: alibabacloud
     env:
       BASE_DOMAIN: alicloud-dev.devcluster.openshift.com
-      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor
-        fails\|\[StatefulSetBasic\] should perform rolling updates and roll backs
-        of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic
-        identity\|\[StatefulSetBasic\] should adopt matching orphans and release non-matching
-        pods\|PVC Protection
+      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor fails\|\[StatefulSetBasic\] should perform
+        rolling updates and roll backs of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic identity\|\[StatefulSetBasic\]
+        should adopt matching orphans and release non-matching pods\|PVC Protection
     observers:
       enable:
       - observers-resource-watch
@@ -948,7 +944,7 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "90"
+      CLUSTER_AGE_DAYS: '90'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
 - as: e2e-metal-ovn-sno-cert-rotation-shutdown-180d-age-90d
@@ -956,7 +952,7 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "180"
+      CLUSTER_AGE_DAYS: '180'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
 - as: e2e-metal-ovn-sno-cert-rotation-shutdown-1y-age-90d
@@ -964,8 +960,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "365"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '365'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
 - as: e2e-metal-ovn-sno-cert-rotation-shutdown-2y-age-90d
@@ -973,8 +969,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "730"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '730'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
 - as: e2e-metal-ovn-sno-cert-rotation-shutdown-60d
@@ -1085,10 +1081,9 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      ADDITIONAL_ENABLED_CAPABILITIES: MachineAPI CloudCredential CloudControllerManager
-        Ingress
+      ADDITIONAL_ENABLED_CAPABILITIES: MachineAPI CloudCredential CloudControllerManager Ingress
       BASELINE_CAPABILITY_SET: None
-      PERSISTENT_MONITORING: "false"
+      PERSISTENT_MONITORING: 'false'
       SKEW: 30d
     workflow: openshift-e2e-aws-cert-rotation
   timeout: 4h0m0s
@@ -1154,7 +1149,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      CLUSTER_NETWORK_MTU: "5000"
+      CLUSTER_NETWORK_MTU: '5000'
     workflow: openshift-e2e-aws-network-mtu
   timeout: 6h0m0s
 - as: e2e-aws-overlay-mtu-ovn-edge-1100
@@ -1162,7 +1157,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      CLUSTER_NETWORK_MTU: "1100"
+      CLUSTER_NETWORK_MTU: '1100'
     workflow: openshift-e2e-aws-network-mtu-edge-zones
   timeout: 6h0m0s
 - as: metal-ovn-single-node-recert-cluster-rename
@@ -1178,8 +1173,8 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      FIPS_ENABLED: "true"
-      MAJOR_MINOR: "4.17"
+      FIPS_ENABLED: 'true'
+      MAJOR_MINOR: '4.17'
     test:
     - ref: fips-check-node-scan
     - ref: fips-check-art-fips
@@ -1195,7 +1190,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_EXTERNAL_CCM_ENABLED: "yes"
+      PLATFORM_EXTERNAL_CCM_ENABLED: 'yes'
     workflow: openshift-e2e-external-aws
   timeout: 6h0m0s
 - as: opct-external-aws-ccm
@@ -1203,7 +1198,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      PLATFORM_EXTERNAL_CCM_ENABLED: "yes"
+      PLATFORM_EXTERNAL_CCM_ENABLED: 'yes'
     workflow: opct-conformance-external-aws
   timeout: 6h0m0s
 zz_generated_metadata:

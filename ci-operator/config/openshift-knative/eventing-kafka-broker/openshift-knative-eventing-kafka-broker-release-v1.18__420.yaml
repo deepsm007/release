@@ -212,7 +212,7 @@ releases:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.20"
+      version: '4.20'
 resources:
   '*':
     requests:
@@ -227,14 +227,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-kafka-broker-source-image
       optional_on_success: true
       resources:
@@ -244,8 +244,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-kafka-broker-source-image
       optional_on_success: true
       resources:
@@ -279,8 +278,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-e2e
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -336,6 +334,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-reconciler
@@ -345,14 +344,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-kafka-broker-source-image
       optional_on_success: true
       resources:
@@ -362,8 +361,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-kafka-broker-source-image
       optional_on_success: true
       resources:
@@ -397,8 +395,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-reconciler
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -454,6 +451,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-reconciler-encryption-auth
@@ -463,14 +461,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-kafka-broker-source-image
       optional_on_success: true
       resources:
@@ -480,8 +478,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-kafka-broker-source-image
       optional_on_success: true
       resources:
@@ -515,8 +512,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-reconciler-encryption-auth
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler-encryption-auth
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -572,6 +568,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-reconciler-keda
@@ -581,14 +578,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-eventing-kafka-broker-source-image
       optional_on_success: true
       resources:
@@ -598,8 +595,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-eventing-kafka-broker-source-image
       optional_on_success: true
       resources:
@@ -633,8 +629,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-reconciler-keda
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler-keda
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -690,9 +685,10 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 zz_generated_metadata:
   branch: release-v1.18
   org: openshift-knative
   repo: eventing-kafka-broker
-  variant: "420"
+  variant: '420'

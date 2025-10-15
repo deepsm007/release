@@ -14,7 +14,7 @@ releases:
       architecture: arm64
       product: ocp
       stream: nightly
-      version: "4.12"
+      version: '4.12'
   initial:
     integration:
       name: "4.12"
@@ -23,7 +23,7 @@ releases:
     candidate:
       product: ocp
       stream: ci
-      version: "4.12"
+      version: '4.12'
 resources:
   '*':
     requests:
@@ -87,7 +87,7 @@ tests:
     cluster_profile: quay-aws
     env:
       BASE_DOMAIN: quay.devcluster.openshift.com
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     test:
     - as: test
       cli: latest
@@ -113,7 +113,7 @@ tests:
     cluster_profile: quay-aws
     env:
       BASE_DOMAIN: quay.devcluster.openshift.com
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     test:
     - as: test
       cli: latest
@@ -189,7 +189,7 @@ tests:
     cluster_profile: quay-aws
     env:
       BASE_DOMAIN: quay.devcluster.openshift.com
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
@@ -212,13 +212,14 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-aws-ocp4-stig
   steps:
     cluster_profile: quay-aws
     env:
       BASE_DOMAIN: quay.devcluster.openshift.com
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     test:
     - as: test
       cli: latest
@@ -244,7 +245,7 @@ tests:
     cluster_profile: quay-aws
     env:
       BASE_DOMAIN: quay.devcluster.openshift.com
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     test:
     - as: test
       cli: latest
@@ -370,7 +371,7 @@ tests:
     cluster_profile: quay-aws
     env:
       BASE_DOMAIN: quay.devcluster.openshift.com
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
@@ -393,13 +394,14 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-aws-rhcos4-stig
   steps:
     cluster_profile: quay-aws
     env:
       BASE_DOMAIN: quay.devcluster.openshift.com
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
@@ -422,13 +424,14 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-aws-ocp4-high
   steps:
     cluster_profile: quay-aws
     env:
       BASE_DOMAIN: quay.devcluster.openshift.com
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     test:
     - as: test
       cli: latest
@@ -454,7 +457,7 @@ tests:
     cluster_profile: quay-aws
     env:
       BASE_DOMAIN: quay.devcluster.openshift.com
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     test:
     - as: test
       cli: latest
@@ -526,7 +529,7 @@ tests:
       BASE_DOMAIN: quay.devcluster.openshift.com
       COMPUTE_ARCH: arm64
       CONTROL_ARCH: arm64
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       OCP_ARCH: arm64
     test:
     - as: test
@@ -553,7 +556,7 @@ tests:
       BASE_DOMAIN: quay.devcluster.openshift.com
       COMPUTE_ARCH: arm64
       CONTROL_ARCH: arm64
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       OCP_ARCH: arm64
     test:
     - as: test
@@ -574,4 +577,4 @@ zz_generated_metadata:
   branch: master
   org: ComplianceAsCode
   repo: content
-  variant: "4.12"
+  variant: '4.12'

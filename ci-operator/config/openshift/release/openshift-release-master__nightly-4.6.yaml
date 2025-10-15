@@ -37,12 +37,12 @@ releases:
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.6"
+      version: '4.6'
   latest:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.6"
+      version: '4.6'
 resources:
   '*':
     requests:
@@ -79,7 +79,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_VERSION: "7.9"
+      PLATFORM_VERSION: '7.9'
     workflow: openshift-e2e-aws-workers-rhel
 - as: e2e-aws
   cron: 43 18 29 */12 *
@@ -129,71 +129,77 @@ tests:
   steps:
     cluster_profile: azure-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-azure-pre
     - ref: fips-check
     workflow: openshift-e2e-azure
+    allow_pre_post_step_overrides: true
 - as: e2e-aws-fips
   cron: 40 17 18 */12 *
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
     workflow: openshift-e2e-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-fips
   cron: 27 17 22 */12 *
   steps:
     cluster_profile: gcp
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-gcp-pre
     - ref: fips-check
     workflow: openshift-e2e-gcp
+    allow_pre_post_step_overrides: true
 - as: e2e-azure-fips-serial
   cron: 25 22 27 */12 *
   steps:
     cluster_profile: azure-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     pre:
     - chain: ipi-azure-pre
     - ref: fips-check
     workflow: openshift-e2e-azure
+    allow_pre_post_step_overrides: true
 - as: e2e-aws-fips-serial
   cron: 45 13 13 */12 *
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
     workflow: openshift-e2e-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-fips-serial
   cron: 9 13 29 */12 *
   steps:
     cluster_profile: gcp-openshift-gce-devel-ci-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     pre:
     - chain: ipi-gcp-pre
     - ref: fips-check
     workflow: openshift-e2e-gcp
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-rt
   cron: 50 22 7 */12 *
   steps:
     cluster_profile: gcp
     env:
       COMPUTE_NODE_TYPE: n2-standard-8
-      RT_ENABLED: "true"
+      RT_ENABLED: 'true'
     workflow: openshift-e2e-gcp-realtime
 - as: e2e-aws-serial
   cron: 9 3 10 */12 *

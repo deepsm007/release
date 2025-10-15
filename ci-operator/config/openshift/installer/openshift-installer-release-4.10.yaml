@@ -126,39 +126,39 @@ resources:
       memory: 200Mi
   baremetal-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   govet:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   installer-artifacts:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   libvirt-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   openstack-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   ovirt-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   unit:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   upi-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
 tests:
 - as: unit
@@ -177,8 +177,7 @@ tests:
     from: src
   skip_if_only_changed: (^docs/)|((^|/)OWNERS(_ALIASES)?$)|((^|/)[A-Z]+\.md$)
 - as: golint
-  commands: IS_CONTAINER=TRUE ./hack/go-lint.sh -min_confidence 0.3 $(go list -f '{{
-    .ImportPath }}' ./...)
+  commands: IS_CONTAINER=TRUE ./hack/go-lint.sh -min_confidence 0.3 $(go list -f '{{ .ImportPath }}' ./...)
   container:
     from: src
   skip_if_only_changed: (^docs/)|((^|/)OWNERS(_ALIASES)?$)|((^|/)[A-Z]+\.md$)
@@ -220,11 +219,9 @@ tests:
   steps:
     cluster_profile: alibabacloud
     env:
-      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor
-        fails\|\[StatefulSetBasic\] should perform rolling updates and roll backs
-        of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic
-        identity\|\[StatefulSetBasic\] should adopt matching orphans and release non-matching
-        pods\|PVC Protection
+      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor fails\|\[StatefulSetBasic\] should perform
+        rolling updates and roll backs of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic identity\|\[StatefulSetBasic\]
+        should adopt matching orphans and release non-matching pods\|PVC Protection
     workflow: openshift-e2e-alibabacloud
 - always_run: false
   as: e2e-gcp-byo-vpc
@@ -286,7 +283,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     workflow: openshift-e2e-aws-workers-rhel
 - always_run: false
   as: e2e-aws-disruptive
@@ -461,7 +458,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/parallel
     pre:
     - chain: ipi-aws-pre
@@ -469,6 +466,7 @@ tests:
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-openstack-kuryr
   optional: true

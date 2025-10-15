@@ -17,13 +17,13 @@ releases:
     release:
       architecture: amd64
       channel: fast
-      version: "4.18"
+      version: '4.18'
   target:
     candidate:
       architecture: amd64
       product: ocp
       stream: nightly
-      version: "4.19"
+      version: '4.19'
 resources:
   '*':
     requests:
@@ -38,19 +38,20 @@ tests:
     dependencies:
       OPENSHIFT_UPGRADE_RELEASE_IMAGE_OVERRIDE: release:target
     env:
-      CHURN: "false"
-      COMPUTE_NODE_REPLICAS: "24"
-      GC: "false"
-      ITERATION_MULTIPLIER_ENV: "9"
-      MAX_UNAVAILABLE: "3"
+      CHURN: 'false'
+      COMPUTE_NODE_REPLICAS: '24'
+      GC: 'false'
+      ITERATION_MULTIPLIER_ENV: '9'
+      MAX_UNAVAILABLE: '3'
       PROFILE_TYPE: reporting
-      RUN_CERBERUS: "false"
+      RUN_CERBERUS: 'false'
     post:
     - ref: openshift-qe-kube-burner-index
     test:
     - chain: openshift-qe-cluster-density-v2
     - ref: openshift-qe-upgrade
     workflow: openshift-qe-installer-gcp-ipi-ovn-etcd-encryption-fips
+    allow_pre_post_step_overrides: true
   timeout: 8h0m0s
 zz_generated_metadata:
   branch: main

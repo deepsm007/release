@@ -29,7 +29,7 @@ releases:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.20"
+      version: '4.20'
 resources:
   '*':
     limits:
@@ -44,14 +44,14 @@ tests:
     cluster_profile: gcp-chaos
     env:
       CNV_SUBSCRIPTION_SOURCE: redhat-operators
-      COMPUTE_NODE_REPLICAS: "2"
+      COMPUTE_NODE_REPLICAS: '2'
       COMPUTE_NODE_TYPE: n2-standard-4
-      GC: "false"
+      GC: 'false'
       SIZE_VARIANT: xlarge
-      SPOT_INSTANCES: "false"
+      SPOT_INSTANCES: 'false'
       TELEMETRY_GROUP: prow-ocp-4.20
-      VMI_READY_THRESHOLD: "30"
-      VMS_PER_NODE: "2"
+      VMI_READY_THRESHOLD: '30'
+      VMS_PER_NODE: '2'
     post:
     - chain: ipi-gcp-post
     test:
@@ -59,6 +59,7 @@ tests:
     - ref: openshift-qe-virt-density
     - ref: redhat-chaos-kubevirt-outage
     workflow: ipi-gcp
+    allow_pre_post_step_overrides: true
   timeout: 6h0m0s
 zz_generated_metadata:
   branch: main

@@ -29,7 +29,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
@@ -61,11 +61,12 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-flaky
   steps:
     cluster_profile: aws-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     pre:
     - chain: ipi-aws-pre
     - ref: fips-check
@@ -94,6 +95,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: ocp
   org: openshift

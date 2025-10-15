@@ -62,6 +62,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-kind
+    allow_pre_post_step_overrides: true
 - as: publish
   postsubmit: true
   steps:
@@ -77,7 +78,7 @@ tests:
         export OSCI_PUBLISH_DELAY="0"
         make -f Makefile.prow osci/publish
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /etc/github
         name: acm-cicd-github
         namespace: test-credentials

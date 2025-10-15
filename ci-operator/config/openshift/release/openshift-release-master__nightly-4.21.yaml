@@ -101,12 +101,12 @@ releases:
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.21"
+      version: '4.21'
   latest:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.21"
+      version: '4.21'
 resources:
   '*':
     requests:
@@ -528,8 +528,7 @@ tests:
   steps:
     cluster_profile: equinix-edge-enablement
     env:
-      TEST_ARGS: --disable-monitor=etcd-log-analyzer,legacy-cvo-invariants,legacy-etcd-invariants,node-lifecycle
-        --cluster-stability=Disruptive
+      TEST_ARGS: --disable-monitor=etcd-log-analyzer,legacy-cvo-invariants,legacy-etcd-invariants,node-lifecycle --cluster-stability=Disruptive
       TEST_SUITE: openshift/two-node
     workflow: baremetalds-two-node-fencing-techpreview
 - as: e2e-metal-ovn-two-node-arbiter-openshift-test-private-tests
@@ -558,8 +557,8 @@ tests:
     cluster_profile: vsphere-elastic
     env:
       FEATURE_SET: TechPreviewNoUpgrade
-      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\|
-        In-tree Volumes \[Driver: vsphere\] \[Testpattern: Pre-provisioned PV'
+      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\| In-tree Volumes \[Driver: vsphere\]
+        \[Testpattern: Pre-provisioned PV'
     observers:
       enable:
       - observers-resource-watch
@@ -571,7 +570,7 @@ tests:
     env:
       FEATURE_GATES: '["VSphereMultiNetworks=true"]'
       FEATURE_SET: CustomNoUpgrade
-      MULTI_NIC_IPI: "true"
+      MULTI_NIC_IPI: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -600,8 +599,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -628,8 +626,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -651,8 +648,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -663,8 +659,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -689,9 +684,8 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      ENABLE_LONG_CSI_CERTIFICATION_TESTS: "true"
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      ENABLE_LONG_CSI_CERTIFICATION_TESTS: 'true'
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -753,12 +747,12 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      CSI_MANAGEMENT_REMOVED: "true"
+      CSI_MANAGEMENT_REMOVED: 'true'
       FEATURE_GATES: '["VSphereMixedNodeEnv=true"]'
       FEATURE_SET: CustomNoUpgrade
       NETWORK_TYPE: multi-tenant
-      PERSISTENT_MONITORING: "false"
-      SETUP_IMAGE_REGISTRY_WITH_PVC: "false"
+      PERSISTENT_MONITORING: 'false'
+      SETUP_IMAGE_REGISTRY_WITH_PVC: 'false'
       TEST_SKIPS: \[sig-storage\]\|\[sig-arch\]\[Early\] Operators low level operators
     workflow: openshift-e2e-vsphere-hybrid-env
   timeout: 5h0m0s
@@ -767,7 +761,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      CSI_MANAGEMENT_REMOVED: "true"
+      CSI_MANAGEMENT_REMOVED: 'true'
       FEATURE_GATES: '["VSphereMixedNodeEnv=true"]'
       FEATURE_SET: CustomNoUpgrade
       TEST_SKIPS: \[sig-storage\]\|\[sig-arch\]\[Early\] Operators low level operators
@@ -778,8 +772,8 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      ADDITIONAL_DISK: "true"
-      DISK_SETUP: "true"
+      ADDITIONAL_DISK: 'true'
+      DISK_SETUP: 'true'
       FEATURE_SET: TechPreviewNoUpgrade
     workflow: openshift-e2e-vsphere
   timeout: 6h0m0s
@@ -788,7 +782,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -796,13 +790,14 @@ tests:
     - chain: ipi-aws-pre
     - ref: fips-check
     workflow: openshift-e2e-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-aws-ovn-upgrade-fips
   interval: 168h
   steps:
     cluster_profile: aws
     env:
-      FAIL_ON_CORE_DUMP: "true"
-      FIPS_ENABLED: "true"
+      FAIL_ON_CORE_DUMP: 'true'
+      FIPS_ENABLED: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -811,6 +806,7 @@ tests:
     - chain: ipi-aws-pre-stableinitial
     - ref: fips-check
     workflow: openshift-upgrade-aws-ovn
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-ovn-upgrade
   interval: 168h
   steps:
@@ -826,7 +822,7 @@ tests:
   steps:
     cluster_profile: gcp-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -834,12 +830,13 @@ tests:
     - chain: ipi-gcp-pre
     - ref: fips-check
     workflow: openshift-e2e-gcp
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-ovn-csi
   interval: 168h
   steps:
     cluster_profile: gcp-openshift-gce-devel-ci-2
     env:
-      ENABLE_LONG_CSI_CERTIFICATION_TESTS: "true"
+      ENABLE_LONG_CSI_CERTIFICATION_TESTS: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -849,7 +846,7 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     observers:
       enable:
@@ -858,6 +855,7 @@ tests:
     - chain: ipi-aws-pre
     - ref: fips-check
     workflow: openshift-e2e-aws
+    allow_pre_post_step_overrides: true
 - as: console-aws
   interval: 168h
   steps:
@@ -883,7 +881,7 @@ tests:
     cluster_profile: gcp-3
     env:
       COMPUTE_NODE_TYPE: n2-standard-8
-      RT_ENABLED: "true"
+      RT_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -909,7 +907,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      ENABLE_LONG_CSI_CERTIFICATION_TESTS: "true"
+      ENABLE_LONG_CSI_CERTIFICATION_TESTS: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -919,7 +917,7 @@ tests:
   steps:
     cluster_profile: azure4
     env:
-      ENABLE_LONG_CSI_CERTIFICATION_TESTS: "true"
+      ENABLE_LONG_CSI_CERTIFICATION_TESTS: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -970,7 +968,7 @@ tests:
         CNF_E2E_TESTS=false
         CNF_ORIGIN_TESTS=true
       T5CI_JOB_TYPE: origintests
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -986,7 +984,7 @@ tests:
         CNF_E2E_TESTS=true
         CNF_ORIGIN_TESTS=false
       T5CI_JOB_TYPE: cnftests
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -1003,7 +1001,7 @@ tests:
         CNF_E2E_TESTS=true
         CNF_ORIGIN_TESTS=false
       T5CI_JOB_TYPE: sno-cnftests
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -1015,9 +1013,9 @@ tests:
   restrict_network_access: false
   steps:
     env:
-      SKIP_OCP_INSTALL: "false"
+      SKIP_OCP_INSTALL: 'false'
       T5CI_JOB_TYPE: ptp
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -1029,10 +1027,10 @@ tests:
   restrict_network_access: false
   steps:
     env:
-      SKIP_OCP_INSTALL: "true"
-      T5CI_DEPLOY_UPSTREAM: "true"
+      SKIP_OCP_INSTALL: 'true'
+      T5CI_DEPLOY_UPSTREAM: 'true'
       T5CI_JOB_TYPE: ptp
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -1048,7 +1046,7 @@ tests:
         CNF_E2E_TESTS=true
         CNF_ORIGIN_TESTS=false
       T5CI_JOB_TYPE: hcp-cnftests
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -1064,7 +1062,7 @@ tests:
         CNF_E2E_TESTS=true
         CNF_ORIGIN_TESTS=false
       T5CI_JOB_TYPE: sno-ztp-cnftests
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -1080,7 +1078,7 @@ tests:
         CNF_E2E_TESTS=true
         CNF_ORIGIN_TESTS=false
       T5CI_JOB_TYPE: mno-ztp-cnftests
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -1092,7 +1090,7 @@ tests:
   steps:
     env:
       T5CI_JOB_TYPE: network-flow-matrix-bm
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -1104,7 +1102,7 @@ tests:
   steps:
     env:
       T5CI_JOB_TYPE: network-flow-matrix-single-node-bm
-      T5CI_VERSION: "4.21"
+      T5CI_VERSION: '4.21'
     observers:
       enable:
       - observers-resource-watch
@@ -1144,11 +1142,9 @@ tests:
     cluster_profile: alibabacloud
     env:
       BASE_DOMAIN: alicloud-dev.devcluster.openshift.com
-      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor
-        fails\|\[StatefulSetBasic\] should perform rolling updates and roll backs
-        of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic
-        identity\|\[StatefulSetBasic\] should adopt matching orphans and release non-matching
-        pods\|PVC Protection
+      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor fails\|\[StatefulSetBasic\] should perform
+        rolling updates and roll backs of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic identity\|\[StatefulSetBasic\]
+        should adopt matching orphans and release non-matching pods\|PVC Protection
     observers:
       enable:
       - observers-resource-watch
@@ -1242,14 +1238,11 @@ tests:
     env:
       COMPUTE_NODE_TYPE: e2-custom-8-32768
       CONTROL_PLANE_NODE_TYPE: e2-custom-8-32768
-      TEST_SKIPS: DNS should provide DNS for the cluster \| Aggregator Should be able
-        to support the 1.17 Sample API Server using the current Aggregator \| Ensure
-        HTTPRoute object is created \| Ensure LB, service, and dnsRecord are created
-        for a Gateway object \| The HAProxy router should pass the http2 tests \|
-        The HAProxy router should pass the gRPC interoperability tests \| Services
-        should fail health check node port if there are only terminating endpoints
-        \| egressfirewall
-      USER_PROVISIONED_DNS: "yes"
+      TEST_SKIPS: DNS should provide DNS for the cluster \| Aggregator Should be able to support the 1.17 Sample API Server
+        using the current Aggregator \| Ensure HTTPRoute object is created \| Ensure LB, service, and dnsRecord are created
+        for a Gateway object \| The HAProxy router should pass the http2 tests \| The HAProxy router should pass the gRPC
+        interoperability tests \| Services should fail health check node port if there are only terminating endpoints \| egressfirewall
+      USER_PROVISIONED_DNS: 'yes'
     observers:
       enable:
       - observers-resource-watch
@@ -1376,7 +1369,7 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "90"
+      CLUSTER_AGE_DAYS: '90'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
 - as: e2e-metal-ovn-sno-cert-rotation-shutdown-180d-age-90d
@@ -1384,7 +1377,7 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "180"
+      CLUSTER_AGE_DAYS: '180'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
 - as: e2e-metal-ovn-sno-cert-rotation-shutdown-1y-age-90d
@@ -1392,8 +1385,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "365"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '365'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
 - as: e2e-metal-ovn-sno-cert-rotation-shutdown-2y-age-90d
@@ -1401,8 +1394,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "730"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '730'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
 - as: e2e-metal-ovn-sno-cert-rotation-shutdown-3y-age-90d
@@ -1410,8 +1403,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "1100"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '1100'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
   timeout: 6h0m0s
@@ -1420,8 +1413,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "1470"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '1470'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
   timeout: 6h0m0s
@@ -1430,8 +1423,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "1830"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '1830'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
   timeout: 6h0m0s
@@ -1440,8 +1433,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "2190"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '2190'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
   timeout: 6h0m0s
@@ -1450,8 +1443,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "2560"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '2560'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
   timeout: 6h0m0s
@@ -1460,8 +1453,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "2930"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '2930'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
   timeout: 6h0m0s
@@ -1470,8 +1463,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "3290"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '3290'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
   timeout: 6h0m0s
@@ -1480,8 +1473,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "3650"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '3650'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown-sno
   timeout: 6h0m0s
@@ -1490,8 +1483,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "365"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '365'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
 - as: e2e-metal-ovn-ha-cert-rotation-shutdown-2y-age-90d
@@ -1499,8 +1492,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "730"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '730'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
 - as: e2e-metal-ovn-ha-cert-rotation-shutdown-3y-age-90d
@@ -1508,8 +1501,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "1100"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '1100'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
   timeout: 6h0m0s
@@ -1518,8 +1511,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "1470"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '1470'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
   timeout: 6h0m0s
@@ -1528,8 +1521,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "1830"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '1830'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
   timeout: 6h0m0s
@@ -1538,8 +1531,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "2190"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '2190'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
   timeout: 6h0m0s
@@ -1548,8 +1541,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "2560"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '2560'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
   timeout: 6h0m0s
@@ -1558,8 +1551,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "2930"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '2930'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
   timeout: 6h0m0s
@@ -1568,8 +1561,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "3290"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '3290'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
   timeout: 6h0m0s
@@ -1578,8 +1571,8 @@ tests:
   steps:
     cluster_profile: gcp
     env:
-      CLUSTER_AGE_DAYS: "3650"
-      CLUSTER_AGE_STEP: "300"
+      CLUSTER_AGE_DAYS: '3650'
+      CLUSTER_AGE_STEP: '300'
       SKEW: 90d
     workflow: openshift-e2e-cert-rotation-shutdown
 - as: e2e-metal-ovn-sno-cert-rotation-shutdown-60d
@@ -1690,10 +1683,9 @@ tests:
   steps:
     cluster_profile: aws-2
     env:
-      ADDITIONAL_ENABLED_CAPABILITIES: MachineAPI CloudCredential CloudControllerManager
-        Ingress
+      ADDITIONAL_ENABLED_CAPABILITIES: MachineAPI CloudCredential CloudControllerManager Ingress
       BASELINE_CAPABILITY_SET: None
-      PERSISTENT_MONITORING: "false"
+      PERSISTENT_MONITORING: 'false'
       SKEW: 30d
     workflow: openshift-e2e-aws-cert-rotation
   timeout: 4h0m0s
@@ -1720,7 +1712,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      CLUSTER_NETWORK_MTU: "5000"
+      CLUSTER_NETWORK_MTU: '5000'
     workflow: openshift-e2e-aws-network-mtu
   timeout: 6h0m0s
 - as: e2e-aws-overlay-mtu-ovn-edge-1100
@@ -1728,7 +1720,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      CLUSTER_NETWORK_MTU: "1100"
+      CLUSTER_NETWORK_MTU: '1100'
     workflow: openshift-e2e-aws-network-mtu-edge-zones
   timeout: 6h0m0s
 - as: metal-ovn-single-node-recert-cluster-rename
@@ -1744,8 +1736,8 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
-      MAJOR_MINOR: "4.19"
+      FIPS_ENABLED: 'true'
+      MAJOR_MINOR: '4.19'
     test:
     - ref: fips-check-node-scan
     - ref: fips-check-art-fips
@@ -1761,7 +1753,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_EXTERNAL_CCM_ENABLED: "yes"
+      PLATFORM_EXTERNAL_CCM_ENABLED: 'yes'
     workflow: openshift-e2e-external-aws
   timeout: 6h0m0s
 - as: opct-external-aws-ccm
@@ -1769,7 +1761,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_EXTERNAL_CCM_ENABLED: "yes"
+      PLATFORM_EXTERNAL_CCM_ENABLED: 'yes'
     workflow: opct-conformance-external-aws
   timeout: 6h0m0s
 - as: e2e-aws-ovn-kube-apiserver-rollout
@@ -1851,8 +1843,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -1907,7 +1898,7 @@ tests:
     cluster_profile: azure4
     env:
       AZURE_CONTROL_PLANE_MULTIDISK_TYPE: etcd
-      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: "yes"
+      AZURE_INSTALL_USE_MINIMAL_PERMISSIONS: 'yes'
       FEATURE_SET: TechPreviewNoUpgrade
     observers:
       enable:

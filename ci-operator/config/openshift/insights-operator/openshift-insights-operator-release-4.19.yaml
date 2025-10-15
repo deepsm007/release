@@ -99,35 +99,35 @@ tests:
       commands: |
         pytest.sh -k "not tp_only and not UI and not slow and not periodic_only" --junitxml=$(pwd)/test-report.xml --rp_enabled --rp_name=Insights_operator_e2e_tests_pr_checks_4.19
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /secrets
         name: insights-qa
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-bucket
         name: aws-bucket
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-access-key-id
         name: aws-access-key-id
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-region
         name: aws-region
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-secret-access-key
         name: aws-secret-access-key
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/slack-bot-token
         name: slack-bot-token
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/slack-webhook-url
         name: slack-webhook-url
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/ocm-access/
         name: insights-ocm-token
         namespace: test-credentials
@@ -151,6 +151,7 @@ tests:
           cpu: 100m
       timeout: 3h0m0s
     workflow: ipi-gcp
+    allow_pre_post_step_overrides: true
 - as: insights-operator-e2e-tests-periodic
   cron: 1 23 * * 0
   steps:
@@ -164,27 +165,27 @@ tests:
       commands: |
         pytest.sh -k "not tp_only and not slow" --junitxml=$(pwd)/test-report.xml --rp_enabled --rp_name=Insights_operator_e2e_tests_periodic_4.19
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /secrets
         name: insights-qa
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-bucket
         name: aws-bucket
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-access-key-id
         name: aws-access-key-id
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-region
         name: aws-region
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-secret-access-key
         name: aws-secret-access-key
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/ocm-access/
         name: insights-ocm-token
         namespace: test-credentials
@@ -204,6 +205,7 @@ tests:
           cpu: 100m
       timeout: 3h0m0s
     workflow: ipi-gcp
+    allow_pre_post_step_overrides: true
 - as: insights-operator-e2e-tests-slow-tests
   cron: 0 0 * * 6
   steps:
@@ -217,23 +219,23 @@ tests:
       commands: |
         pytest.sh -k "slow and not tp_only" --junitxml=$(pwd)/test-report.xml --rp_enabled --rp_name=Insights_operator_e2e_tests_slow_tests
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /secrets
         name: insights-qa
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-bucket
         name: aws-bucket
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-access-key-id
         name: aws-access-key-id
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-region
         name: aws-region
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-secret-access-key
         name: aws-secret-access-key
         namespace: test-credentials
@@ -253,6 +255,7 @@ tests:
           cpu: 100m
       timeout: 3h0m0s
     workflow: ipi-gcp
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-ovn-techpreview
   steps:
     cluster_profile: gcp-3
@@ -264,38 +267,37 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: pytest.sh -m "not UI and techpreview" --junitxml=$(pwd)/test-report.xml
-        --rp_enabled --rp_name=Insights_operator_e2e_tests_techpreview_4.19
+      commands: pytest.sh -m "not UI and techpreview" --junitxml=$(pwd)/test-report.xml --rp_enabled --rp_name=Insights_operator_e2e_tests_techpreview_4.19
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /secrets
         name: insights-qa
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-bucket
         name: aws-bucket
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-access-key-id
         name: aws-access-key-id
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-region
         name: aws-region
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-secret-access-key
         name: aws-secret-access-key
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/slack-bot-token
         name: slack-bot-token
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/slack-webhook-url
         name: slack-webhook-url
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/ocm-access/
         name: insights-ocm-token
         namespace: test-credentials
@@ -317,6 +319,7 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-gcp
+    allow_pre_post_step_overrides: true
 - as: fips-image-scan-operator
   cron: 0 2 * * 2
   steps:
@@ -332,34 +335,33 @@ tests:
       BASE_DOMAIN: qe.devcluster.openshift.com
       HYPERSHIFT_AWS_REGION: us-east-1
       HYPERSHIFT_HC_ZONES: us-east-1a,us-east-1b,us-east-1c
-      HYPERSHIFT_NODE_COUNT: "1"
+      HYPERSHIFT_NODE_COUNT: '1'
     test:
     - as: test
       cli: latest
-      commands: pytest.sh -k "not tp_only and not slow and not UI" --junitxml=$(pwd)/test-report.xml
-        --rp_enabled --rp_name=hosted-hypershift-insights-operator-e2e-tests-4.19
+      commands: pytest.sh -k "not tp_only and not slow and not UI" --junitxml=$(pwd)/test-report.xml --rp_enabled --rp_name=hosted-hypershift-insights-operator-e2e-tests-4.19
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /secrets
         name: insights-qa
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-bucket
         name: aws-bucket
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-access-key-id
         name: aws-access-key-id
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-region
         name: aws-region
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/aws/aws-secret-access-key
         name: aws-secret-access-key
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /secret/ocm-access/
         name: insights-ocm-token
         namespace: test-credentials
@@ -389,7 +391,7 @@ tests:
 - as: verify-deps
   steps:
     env:
-      CHECK_MOD_LIST: "false"
+      CHECK_MOD_LIST: 'false'
     test:
     - ref: go-verify-deps
 zz_generated_metadata:

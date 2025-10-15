@@ -33,7 +33,7 @@ resources:
     requests:
       cpu: 100m
       memory: 1Gi
-test_binary_build_commands: "true"
+test_binary_build_commands: 'true'
 tests:
 - as: test-unit
   commands: |
@@ -71,6 +71,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-kind
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: release-2.4
   org: stolostron

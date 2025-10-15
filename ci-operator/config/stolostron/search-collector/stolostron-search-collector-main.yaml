@@ -62,6 +62,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-kind
+    allow_pre_post_step_overrides: true
 - as: git-fast-forward
   postsubmit: true
   steps:

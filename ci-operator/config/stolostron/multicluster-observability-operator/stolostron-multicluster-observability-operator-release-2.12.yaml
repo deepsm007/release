@@ -96,7 +96,7 @@ resources:
     requests:
       cpu: 100m
       memory: 1Gi
-test_binary_build_commands: "true"
+test_binary_build_commands: 'true'
 tests:
 - as: ocm-ci-rbac
   steps:
@@ -186,6 +186,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-kind
+    allow_pre_post_step_overrides: true
 - as: test-e2e
   skip_if_only_changed: ^docs/|hack/|^\.tekton/|\.md$|\.properties$|\.copyrightignore$|\.dockerignore$|^(?:.*/)?(?:\.gitignore|\.md$|OWNERS|PROJECT|LICENSE|DCO)$
   steps:
@@ -268,7 +269,7 @@ tests:
         export OSCI_PUBLISH_DELAY="0"
         make osci/publish
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /etc/github
         name: acm-cicd-github
         namespace: test-credentials
@@ -294,7 +295,7 @@ tests:
         export OSCI_PUBLISH_DELAY="0"
         make osci/publish
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /etc/github
         name: acm-cicd-github
         namespace: test-credentials
@@ -321,7 +322,7 @@ tests:
         export OSCI_PUBLISH_DELAY="0"
         make osci/publish
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /etc/github
         name: acm-cicd-github
         namespace: test-credentials
@@ -348,7 +349,7 @@ tests:
         export OSCI_PUBLISH_DELAY="0"
         make osci/publish
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /etc/github
         name: acm-cicd-github
         namespace: test-credentials
@@ -375,7 +376,7 @@ tests:
         export OSCI_PUBLISH_DELAY="0"
         make osci/publish
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /etc/github
         name: acm-cicd-github
         namespace: test-credentials
@@ -402,7 +403,7 @@ tests:
         export OSCI_PUBLISH_DELAY="0"
         make osci/publish
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /etc/github
         name: acm-cicd-github
         namespace: test-credentials

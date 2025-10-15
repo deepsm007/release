@@ -126,6 +126,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: optional-operators-ci-aws
+    allow_pre_post_step_overrides: true
 - as: red-hat-storage-ocs-ci-e2e-aws
   optional: true
   steps:

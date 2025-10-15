@@ -58,7 +58,7 @@ releases:
     release:
       architecture: multi
       channel: stable
-      version: "4.16"
+      version: '4.16'
 resources:
   '*':
     limits:
@@ -104,7 +104,7 @@ tests:
     owner: obs
     product: ocp
     timeout: 1h0m0s
-    version: "4.16"
+    version: '4.16'
   cron: 10 2 * * *
   steps:
     pre:
@@ -148,15 +148,15 @@ tests:
         echo "starting tests for $LLM_PROVIDER $LLM_MODEL"
         make test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/openai
         name: openai-apitoken
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/azure_openai
         name: azureopenai-apitoken
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/azureopenai-entra-id
         name: azureopenai-entra-id
         namespace: test-credentials
@@ -165,6 +165,7 @@ tests:
         requests:
           cpu: 100m
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
 - as: bundle-e2e-4-17
   cluster_claim:
     architecture: amd64
@@ -175,7 +176,7 @@ tests:
     owner: obs
     product: ocp
     timeout: 1h0m0s
-    version: "4.17"
+    version: '4.17'
   cron: 10 2 * * *
   steps:
     pre:
@@ -219,15 +220,15 @@ tests:
         echo "starting tests for $LLM_PROVIDER $LLM_MODEL"
         make test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/openai
         name: openai-apitoken
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/azure_openai
         name: azureopenai-apitoken
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/azureopenai-entra-id
         name: azureopenai-entra-id
         namespace: test-credentials
@@ -236,6 +237,7 @@ tests:
         requests:
           cpu: 100m
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
 - as: bundle-e2e-4-18
   cluster_claim:
     architecture: amd64
@@ -246,7 +248,7 @@ tests:
     owner: obs
     product: ocp
     timeout: 1h0m0s
-    version: "4.18"
+    version: '4.18'
   cron: 10 2 * * *
   steps:
     pre:
@@ -290,15 +292,15 @@ tests:
         echo "starting tests for $LLM_PROVIDER $LLM_MODEL"
         make test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/openai
         name: openai-apitoken
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/azure_openai
         name: azureopenai-apitoken
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/azureopenai-entra-id
         name: azureopenai-entra-id
         namespace: test-credentials
@@ -307,6 +309,7 @@ tests:
         requests:
           cpu: 100m
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
 - as: bundle-e2e-4-19
   cluster_claim:
     architecture: amd64
@@ -317,7 +320,7 @@ tests:
     owner: obs
     product: ocp
     timeout: 1h0m0s
-    version: "4.19"
+    version: '4.19'
   cron: 10 2 * * *
   presubmit: true
   skip_if_only_changed: ^docs/|\.md$|lightspeed-catalog.*|^renovate\.json|^\.golangci\.yaml|^\.tekton/|^\.github/|^hack/|^(?:.*/)?(?:\.gitignore|\.snyk|\.dockerignore|OWNERS|PROJECT|LICENSE)$
@@ -363,15 +366,15 @@ tests:
         echo "starting tests for $LLM_PROVIDER $LLM_MODEL"
         make test-e2e
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/openai
         name: openai-apitoken
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/azure_openai
         name: azureopenai-apitoken
         namespace: test-credentials
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/azureopenai-entra-id
         name: azureopenai-entra-id
         namespace: test-credentials
@@ -380,6 +383,7 @@ tests:
         requests:
           cpu: 100m
     workflow: generic-claim
+    allow_pre_post_step_overrides: true
 - as: security
   skip_if_only_changed: ^docs/|\.md$|lightspeed-catalog.*|^\.tekton/|^\.github/|^hack/|^(?:.*/)?(?:\.gitignore|\.snyk|\.dockerignore|OWNERS|PROJECT|LICENSE)$
   steps:

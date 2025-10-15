@@ -12,12 +12,12 @@ releases:
     candidate:
       product: ocp
       stream: ci
-      version: "4.16"
+      version: '4.16'
   latest:
     candidate:
       product: ocp
       stream: ci
-      version: "4.17"
+      version: '4.17'
 resources:
   '*':
     requests:
@@ -45,7 +45,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -56,7 +56,7 @@ tests:
   steps:
     cluster_profile: gcp-openshift-gce-devel-ci-2
     env:
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -78,7 +78,7 @@ tests:
   steps:
     cluster_profile: azure-2
     env:
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -108,6 +108,7 @@ tests:
     - ref: ipi-conf-user-workload-monitoring
     - chain: ipi-aws-pre-stableinitial
     workflow: openshift-upgrade-aws
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: master
   org: openshift

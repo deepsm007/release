@@ -89,12 +89,12 @@ releases:
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.14"
+      version: '4.14'
   latest:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.14"
+      version: '4.14'
 resources:
   '*':
     requests:
@@ -271,8 +271,8 @@ tests:
     cluster_profile: vsphere-elastic
     env:
       FEATURE_SET: TechPreviewNoUpgrade
-      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\|
-        In-tree Volumes \[Driver: vsphere\] \[Testpattern: Pre-provisioned PV'
+      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\] \[Testpattern: Inline-volume\| In-tree Volumes \[Driver: vsphere\]
+        \[Testpattern: Pre-provisioned PV'
     observers:
       enable:
       - observers-resource-watch
@@ -292,8 +292,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -311,8 +310,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -332,8 +330,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -343,8 +340,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -354,8 +350,7 @@ tests:
   steps:
     cluster_profile: vsphere-elastic
     env:
-      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage
-        on the same node
+      TEST_SKIPS: provisioning should mount multiple PV pointing to the same storage on the same node
     observers:
       enable:
       - observers-resource-watch
@@ -383,7 +378,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     observers:
       enable:
       - observers-resource-watch
@@ -393,7 +388,7 @@ tests:
   steps:
     cluster_profile: azure-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -401,12 +396,13 @@ tests:
     - chain: ipi-azure-pre
     - ref: fips-check
     workflow: openshift-e2e-azure-sdn
+    allow_pre_post_step_overrides: true
 - as: e2e-aws-ovn-fips
   cron: 36 7 24 11 *
   steps:
     cluster_profile: aws-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -414,6 +410,7 @@ tests:
     - chain: ipi-aws-pre
     - ref: fips-check
     workflow: openshift-e2e-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-sdn
   cron: 39 11 12 5 *
   steps:
@@ -447,7 +444,7 @@ tests:
   steps:
     cluster_profile: gcp-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -455,6 +452,7 @@ tests:
     - chain: ipi-gcp-pre
     - ref: fips-check
     workflow: openshift-e2e-gcp
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-ovn-csi
   cron: 13 23 14 7 *
   steps:
@@ -468,7 +466,7 @@ tests:
   steps:
     cluster_profile: azure-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     observers:
       enable:
@@ -477,12 +475,13 @@ tests:
     - chain: ipi-azure-pre
     - ref: fips-check
     workflow: openshift-e2e-azure-sdn
+    allow_pre_post_step_overrides: true
 - as: e2e-aws-ovn-fips-serial
   cron: 28 8 6 5 *
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     observers:
       enable:
@@ -491,12 +490,13 @@ tests:
     - chain: ipi-aws-pre
     - ref: fips-check
     workflow: openshift-e2e-aws
+    allow_pre_post_step_overrides: true
 - as: e2e-gcp-sdn-fips-serial
   cron: 50 6 6 9 *
   steps:
     cluster_profile: gcp-openshift-gce-devel-ci-2
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     observers:
       enable:
@@ -505,6 +505,7 @@ tests:
     - chain: ipi-gcp-pre
     - ref: fips-check
     workflow: openshift-e2e-gcp-sdn
+    allow_pre_post_step_overrides: true
 - as: console-aws
   cron: 10 6 2 2 *
   steps:
@@ -530,7 +531,7 @@ tests:
     cluster_profile: gcp-3
     env:
       COMPUTE_NODE_TYPE: n2-standard-8
-      RT_ENABLED: "true"
+      RT_ENABLED: 'true'
     observers:
       enable:
       - observers-resource-watch
@@ -659,7 +660,7 @@ tests:
         cd /tmp/cnv-ci
         make deploy_test
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/cnv-ci-brew-pull-secret
         name: cnv-ci-brew-pull-secret
         namespace: test-credentials
@@ -670,13 +671,13 @@ tests:
         name: BREW_IMAGE_REGISTRY_TOKEN_PATH
       - default: v0.55.0
         name: KUBEVIRT_RELEASE
-      - default: "4.14"
+      - default: '4.14'
         name: OCP_VERSION
       - default: /tmp/artifacts
         name: ARTIFACTS_DIR
       - default: openshift-cnv
         name: TARGET_NAMESPACE
-      - default: "false"
+      - default: 'false'
         name: PRODUCTION_RELEASE
       from: cnv-ci-src
       resources:
@@ -700,7 +701,7 @@ tests:
         cd /tmp/cnv-ci
         make upgrade_test
       credentials:
-      - collection: ""
+      - collection: ''
         mount_path: /var/run/cnv-ci-brew-pull-secret
         name: cnv-ci-brew-pull-secret
         namespace: test-credentials
@@ -711,13 +712,13 @@ tests:
         name: BREW_IMAGE_REGISTRY_TOKEN_PATH
       - default: v0.55.0
         name: KUBEVIRT_RELEASE
-      - default: "4.14"
+      - default: '4.14'
         name: OCP_VERSION
       - default: /tmp/artifacts
         name: ARTIFACTS_DIR
       - default: openshift-cnv
         name: TARGET_NAMESPACE
-      - default: "false"
+      - default: 'false'
         name: PRODUCTION_RELEASE
       from: cnv-ci-src-upgrade
       resources:
@@ -732,9 +733,9 @@ tests:
   restrict_network_access: false
   steps:
     env:
-      SKIP_OCP_INSTALL: "false"
+      SKIP_OCP_INSTALL: 'false'
       T5CI_JOB_TYPE: ptp
-      T5CI_VERSION: "4.14"
+      T5CI_VERSION: '4.14'
     observers:
       enable:
       - observers-resource-watch
@@ -745,11 +746,9 @@ tests:
     cluster_profile: alibabacloud
     env:
       BASE_DOMAIN: alicloud-dev.devcluster.openshift.com
-      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor
-        fails\|\[StatefulSetBasic\] should perform rolling updates and roll backs
-        of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic
-        identity\|\[StatefulSetBasic\] should adopt matching orphans and release non-matching
-        pods\|PVC Protection
+      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor fails\|\[StatefulSetBasic\] should perform
+        rolling updates and roll backs of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic identity\|\[StatefulSetBasic\]
+        should adopt matching orphans and release non-matching pods\|PVC Protection
     observers:
       enable:
       - observers-resource-watch
@@ -905,7 +904,7 @@ tests:
     env:
       ADDITIONAL_ENABLED_CAPABILITIES: MachineAPI
       BASELINE_CAPABILITY_SET: None
-      PERSISTENT_MONITORING: "false"
+      PERSISTENT_MONITORING: 'false'
       SKEW: 30d
     workflow: openshift-e2e-aws-cert-rotation
   timeout: 4h0m0s
@@ -930,8 +929,8 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
-      MAJOR_MINOR: "4.14"
+      FIPS_ENABLED: 'true'
+      MAJOR_MINOR: '4.14'
     test:
     - ref: fips-check-node-scan
     - ref: fips-check-art-fips

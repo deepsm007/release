@@ -85,7 +85,7 @@ resources:
     requests:
       cpu: 100m
       memory: 1Gi
-test_binary_build_commands: "true"
+test_binary_build_commands: 'true'
 tests:
 - as: ocm-ci-rbac
   steps:
@@ -176,6 +176,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-kind
+    allow_pre_post_step_overrides: true
 - as: test-e2e
   skip_if_only_changed: ^docs/|hack/|^\.tekton/|\.md$|\.properties$|\.copyrightignore$|\.dockerignore$|^(?:.*/)?(?:\.gitignore|\.md$|OWNERS|PROJECT|LICENSE|DCO)$
   steps:
@@ -189,7 +190,7 @@ tests:
       CLUSTERPOOL_HOST_PROW_KUBE_SECRET: ocm-obs-usa-clusterpool
       CLUSTERPOOL_HUB_FILTER: sno-4xlarge-419
       CLUSTERPOOL_LIFETIME: 1h
-      CLUSTERPOOL_MANAGED_COUNT: "1"
+      CLUSTERPOOL_MANAGED_COUNT: '1'
       CLUSTERPOOL_MANAGED_FILTER: sno-419
       COMPONENT_NAME: multicluster-observability-operator
       DEPLOY_HUB_ADDITIONAL_YAML: |
@@ -222,8 +223,8 @@ tests:
     - as: obs-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=registry.redhat.io/rhacm2/acm-must-gather-rhel9:v2.12
-        /usr/bin/gather_observability_log --dest-dir=${ARTIFACT_DIR}/must-gather --insecure-skip-tls-verify
+      commands: oc adm must-gather --image=registry.redhat.io/rhacm2/acm-must-gather-rhel9:v2.12 /usr/bin/gather_observability_log
+        --dest-dir=${ARTIFACT_DIR}/must-gather --insecure-skip-tls-verify
       from: base-tests
       optional_on_success: true
       resources:
@@ -257,6 +258,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-clusterpool
+    allow_pre_post_step_overrides: true
 - as: fast-forward
   postsubmit: true
   steps:

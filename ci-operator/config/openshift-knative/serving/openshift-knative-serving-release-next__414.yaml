@@ -276,7 +276,7 @@ releases:
   latest:
     release:
       channel: fast
-      version: "4.14"
+      version: '4.14'
 resources:
   '*':
     requests:
@@ -291,14 +291,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-serving-source-image
       optional_on_success: true
       resources:
@@ -308,8 +308,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-serving-source-image
       optional_on_success: true
       resources:
@@ -343,8 +342,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-e2e
       dependencies:
       - env: KNATIVE_SERVING_ACTIVATOR
         name: knative-serving-activator
@@ -410,6 +408,7 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 - always_run: false
   as: test-e2e-c
@@ -420,14 +419,14 @@ tests:
     cluster_profile: aws-serverless
     env:
       BASE_DOMAIN: serverless.devcluster.openshift.com
-      SPOT_INSTANCES: "true"
-      ZONES_COUNT: "1"
+      SPOT_INSTANCES: 'true'
+      ZONES_COUNT: '1'
     post:
     - as: testlog-gather
       best_effort: true
       cli: latest
-      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log
-        "${ARTIFACT_DIR}/" || true
+      commands: cp -v ${SHARED_DIR}/debuglog-*.log ${SHARED_DIR}/stdout-*.log ${SHARED_DIR}/stderr-*.log "${ARTIFACT_DIR}/"
+        || true
       from: knative-serving-source-image
       optional_on_success: false
       resources:
@@ -437,8 +436,7 @@ tests:
     - as: knative-must-gather
       best_effort: true
       cli: latest
-      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir
-        "${ARTIFACT_DIR}/gather-knative"
+      commands: oc adm must-gather --image=quay.io/openshift-knative/must-gather --dest-dir "${ARTIFACT_DIR}/gather-knative"
       from: knative-serving-source-image
       optional_on_success: false
       resources:
@@ -472,8 +470,7 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
-        make test-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true make test-e2e
       dependencies:
       - env: KNATIVE_SERVING_ACTIVATOR
         name: knative-serving-activator
@@ -539,9 +536,10 @@ tests:
           cpu: 100m
       timeout: 4h0m0s
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 5h0m0s
 zz_generated_metadata:
   branch: release-next
   org: openshift-knative
   repo: serving
-  variant: "414"
+  variant: '414'

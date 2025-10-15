@@ -26,7 +26,7 @@ resources:
     requests:
       cpu: 100m
       memory: 1Gi
-test_binary_build_commands: "true"
+test_binary_build_commands: 'true'
 tests:
 - as: pr-image-mirror
   steps:
@@ -61,6 +61,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: ocm-e2e-kind
+    allow_pre_post_step_overrides: true
 - as: fast-forward
   postsubmit: true
   steps:

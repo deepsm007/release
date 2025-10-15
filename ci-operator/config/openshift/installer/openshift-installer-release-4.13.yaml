@@ -157,43 +157,43 @@ resources:
       memory: 200Mi
   aro-unit:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   baremetal-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   govet:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   installer-artifacts:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   libvirt-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   openstack-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   ovirt-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   unit:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
   upi-installer:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 5Gi
 tests:
 - as: unit
@@ -274,7 +274,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      EDGE_PUBLIC_SUBNET: "yes"
+      EDGE_PUBLIC_SUBNET: 'yes'
       EDGE_ZONE_TYPES: local-zone
     workflow: openshift-e2e-aws-edge-zones-byo-vpc
   timeout: 6h0m0s
@@ -309,11 +309,9 @@ tests:
   steps:
     cluster_profile: alibabacloud
     env:
-      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor
-        fails\|\[StatefulSetBasic\] should perform rolling updates and roll backs
-        of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic
-        identity\|\[StatefulSetBasic\] should adopt matching orphans and release non-matching
-        pods\|PVC Protection
+      TEST_SKIPS: \[StatefulSetBasic\] should not deadlock when a pod.s predecessor fails\|\[StatefulSetBasic\] should perform
+        rolling updates and roll backs of template modifications with PVCs\|\[StatefulSetBasic\] should provide basic identity\|\[StatefulSetBasic\]
+        should adopt matching orphans and release non-matching pods\|PVC Protection
     workflow: openshift-e2e-alibabacloud
   timeout: 6h0m0s
 - always_run: false
@@ -393,7 +391,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      PLATFORM_VERSION: "8.10"
+      PLATFORM_VERSION: '8.10'
     workflow: openshift-e2e-aws-workers-rhel
   timeout: 6h0m0s
 - always_run: false
@@ -487,8 +485,8 @@ tests:
   steps:
     cluster_profile: openstack-vexxhost
     env:
-      OPENSTACK_TEST_SKIPS: The OpenStack platform creates Worker nodes in a server
-        group\|The OpenStack platform creates Control plane nodes in a server group
+      OPENSTACK_TEST_SKIPS: The OpenStack platform creates Worker nodes in a server group\|The OpenStack platform creates
+        Control plane nodes in a server group
       TEST_SUITE: experimental/reliability/minimal
     workflow: openshift-e2e-openstack-upi
   timeout: 6h0m0s
@@ -619,7 +617,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/parallel
     pre:
     - chain: ipi-aws-pre
@@ -627,6 +625,7 @@ tests:
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
   timeout: 6h0m0s
 - always_run: false
   as: e2e-openstack-kuryr

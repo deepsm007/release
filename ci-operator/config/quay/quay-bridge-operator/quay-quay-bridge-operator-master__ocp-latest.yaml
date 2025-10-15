@@ -81,6 +81,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: optional-operators-ci-aws
+    allow_pre_post_step_overrides: true
 - as: nightly-quay-3-10-unstable-e2e
   cron: 42 10 */1 * 1-5
   steps:
@@ -115,6 +116,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: optional-operators-ci-aws
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: master
   org: quay

@@ -25,12 +25,12 @@ releases:
       product: ocp
       relative: 1
       stream: nightly
-      version: "4.14"
+      version: '4.14'
   latest:
     candidate:
       product: ocp
       stream: nightly
-      version: "4.14"
+      version: '4.14'
 resources:
   '*':
     limits:
@@ -44,25 +44,26 @@ tests:
   steps:
     cluster_profile: openstack-vexxhost
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: experimental/reliability/minimal
     pre:
     - chain: ipi-openstack-pre
     - ref: fips-check
     workflow: openshift-e2e-openstack-ipi
+    allow_pre_post_step_overrides: true
 - as: e2e-openstack-proxy
   minimum_interval: 144h
   steps:
     cluster_profile: openstack-vh-bm-rhos
     env:
-      OPENSTACK_TEST_SKIPS: ""
+      OPENSTACK_TEST_SKIPS: ''
     workflow: openshift-e2e-openstack-proxy
 - as: e2e-openstack-externallb
   minimum_interval: 168h
   steps:
     cluster_profile: openstack-vh-bm-rhos
     env:
-      OPENSTACK_TEST_SKIPS: ""
+      OPENSTACK_TEST_SKIPS: ''
     workflow: openshift-e2e-openstack-external-lb
 - as: e2e-openstack-nfv-intel
   minimum_interval: 144h
@@ -100,8 +101,7 @@ tests:
   steps:
     cluster_profile: openstack-vh-bm-rhos
     env:
-      TEST_SKIPS: should concurrently access the volume and restored snapshot from
-        pods on the same node
+      TEST_SKIPS: should concurrently access the volume and restored snapshot from pods on the same node
     workflow: openshift-e2e-openstack-csi-cinder
 - as: e2e-openstack-sdn
   minimum_interval: 144h
@@ -115,7 +115,7 @@ tests:
   steps:
     cluster_profile: openstack-vexxhost
     env:
-      ROTATE_CLOUD_CREDENTIALS: "true"
+      ROTATE_CLOUD_CREDENTIALS: 'true'
       TEST_SUITE: openshift/conformance/parallel
     workflow: openshift-e2e-openstack-ipi
 - as: e2e-openstack-ovn-serial
@@ -123,7 +123,7 @@ tests:
   steps:
     cluster_profile: openstack-vexxhost
     env:
-      ROTATE_CLOUD_CREDENTIALS: "true"
+      ROTATE_CLOUD_CREDENTIALS: 'true'
       TEST_SUITE: openshift/conformance/serial
     workflow: openshift-e2e-openstack-ipi
 - as: e2e-openstack-upi
@@ -131,8 +131,8 @@ tests:
   steps:
     cluster_profile: openstack-vexxhost
     env:
-      OPENSTACK_TEST_SKIPS: The OpenStack platform creates Worker nodes in a server
-        group\|The OpenStack platform creates Control plane nodes in a server group
+      OPENSTACK_TEST_SKIPS: The OpenStack platform creates Worker nodes in a server group\|The OpenStack platform creates
+        Control plane nodes in a server group
       TEST_SUITE: experimental/reliability/minimal
     workflow: openshift-e2e-openstack-upi
 - as: e2e-openstack-ovn-password

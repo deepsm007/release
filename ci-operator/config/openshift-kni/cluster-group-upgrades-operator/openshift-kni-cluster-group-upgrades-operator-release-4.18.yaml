@@ -102,6 +102,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: optional-operators-ci-aws
+    allow_pre_post_step_overrides: true
 - as: security
   optional: true
   steps:

@@ -85,6 +85,7 @@ tests:
           cpu: 100m
           memory: 200Mi
     workflow: optional-operators-ci-aws
+    allow_pre_post_step_overrides: true
 zz_generated_metadata:
   branch: redhat-3.9
   org: quay

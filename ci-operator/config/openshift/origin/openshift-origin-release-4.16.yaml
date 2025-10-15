@@ -68,15 +68,15 @@ resources:
       memory: 4Gi
   bin:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 7Gi
   tests:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 7Gi
   verify:
     requests:
-      cpu: "3"
+      cpu: '3'
       memory: 8Gi
 tests:
 - as: unit
@@ -104,7 +104,7 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      TELEMETRY_ENABLED: "false"
+      TELEMETRY_ENABLED: 'false'
     workflow: openshift-e2e-aws
 - as: e2e-gcp-ovn
   skip_if_only_changed: ^(?:docs|\.github)/|\.md$|^(?:\.gitignore|OWNERS|OWNERS_ALIASES|PROJECT|LICENSE)$
@@ -117,12 +117,13 @@ tests:
   steps:
     cluster_profile: gcp-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/serial
     pre:
     - chain: ipi-gcp-pre
     - ref: fips-check
     workflow: openshift-e2e-gcp
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-aws-ovn
   optional: true
@@ -141,7 +142,7 @@ tests:
   steps:
     cluster_profile: azure-2
     env:
-      FAIL_ON_CORE_DUMP: "true"
+      FAIL_ON_CORE_DUMP: 'true'
       TEST_TYPE: upgrade-conformance
     observers:
       enable:
@@ -166,10 +167,10 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      TEST_REQUIRES_SSH: "yes"
+      TEST_REQUIRES_SSH: 'yes'
       TEST_SUITE: openshift/disruptive
       TEST_TYPE: suite-conformance
-      TEST_UPGRADE_OPTIONS: ""
+      TEST_UPGRADE_OPTIONS: ''
     workflow: openshift-e2e-aws-disruption
 - always_run: false
   as: e2e-gcp-disruptive
@@ -225,8 +226,8 @@ tests:
   steps:
     cluster_profile: aws
     env:
-      DELETE_MC: "false"
-      TEST_SUITE: ""
+      DELETE_MC: 'false'
+      TEST_SUITE: ''
       TEST_TYPE: upgrade
       TEST_UPGRADE_OPTIONS: abort-at=100
     workflow: openshift-upgrade-aws
@@ -266,7 +267,7 @@ tests:
   steps:
     cluster_profile: aws-3
     env:
-      FIPS_ENABLED: "true"
+      FIPS_ENABLED: 'true'
       TEST_SUITE: openshift/conformance/parallel
     pre:
     - chain: ipi-aws-pre
@@ -274,13 +275,14 @@ tests:
     test:
     - ref: openshift-e2e-test
     workflow: ipi-aws
+    allow_pre_post_step_overrides: true
 - always_run: false
   as: e2e-aws-multitenant
   optional: true
   steps:
     cluster_profile: aws
     env:
-      OVERRIDE_OPENSHIFT_SDN_DEPRECATION: "true"
+      OVERRIDE_OPENSHIFT_SDN_DEPRECATION: 'true'
     workflow: openshift-e2e-aws-sdn-multi
 - always_run: false
   as: e2e-metal-ipi-sdn
@@ -470,7 +472,7 @@ tests:
   steps:
     cluster_profile: equinix-ocp-metal
     env:
-      HYPERSHIFT_NODE_COUNT: "2"
+      HYPERSHIFT_NODE_COUNT: '2'
       ODF_OPERATOR_SUB_CHANNEL: stable-4.14
     workflow: hypershift-kubevirt-baremetalds-conformance
 - always_run: false
@@ -492,7 +494,7 @@ tests:
     cluster_profile: equinix-ocp-hcp
     env:
       LVM_OPERATOR_SUB_CHANNEL: stable-4.16
-      MCE_VERSION: "2.6"
+      MCE_VERSION: '2.6'
     workflow: hypershift-mce-agent-metal3-conformance
 - always_run: false
   as: e2e-agent-connected-ovn-dualstack-metal3
@@ -509,7 +511,7 @@ tests:
         NUM_EXTRA_WORKERS=3
       IP_STACK: v4v6
       LVM_OPERATOR_SUB_CHANNEL: stable-4.16
-      MCE_VERSION: "2.6"
+      MCE_VERSION: '2.6'
     workflow: hypershift-mce-agent-metal3-conformance
 - always_run: false
   as: e2e-agent-disconnected-ovn-dualstack-metal3
@@ -527,7 +529,7 @@ tests:
         NUM_EXTRA_WORKERS=3
       IP_STACK: v4v6
       LVM_OPERATOR_SUB_CHANNEL: stable-4.16
-      MCE_VERSION: "2.6"
+      MCE_VERSION: '2.6'
     workflow: hypershift-mce-agent-disconnected-conformance
 zz_generated_metadata:
   branch: release-4.16
