@@ -741,7 +741,6 @@ tests:
       - observers-resource-watch
     workflow: openshift-e2e-azure-csi
 - as: e2e-azurestack-csi
-  cluster: build01
   cron: 59 1 25 1 *
   steps:
     cluster_profile: azurestack-dev
@@ -908,7 +907,6 @@ tests:
       - observers-resource-watch
     workflow: openshift-e2e-gcp-upi
 - as: e2e-azurestack-ovn-upi
-  cluster: build01
   cron: 46 21 16 9 *
   steps:
     cluster_profile: azurestack-dev
@@ -917,7 +915,6 @@ tests:
       - observers-resource-watch
     workflow: openshift-e2e-azurestack-upi
 - as: e2e-nutanix-ovn
-  cluster: build01
   cron: 34 2 20 11 *
   steps:
     cluster_profile: nutanix
