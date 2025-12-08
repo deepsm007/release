@@ -1799,7 +1799,8 @@ tests:
       - observers-resource-watch
     workflow: rosa-aws-sts-conformance
 - as: e2e-osd-ccs-gcp
-  cluster: build10
+  capabilities:
+    - intranet
   cron: '@daily'
   steps:
     cluster_profile: gcp-qe
