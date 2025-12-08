@@ -499,8 +499,7 @@ tests:
       VOLUME_CAPACITY: 64GB
     workflow: openshift-e2e-libvirt-upi
 - as: ocp-e2e-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 12 * * 1-4
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -513,8 +512,7 @@ tests:
       USE_RAMFS: "true"
     workflow: openshift-e2e-libvirt-upi
 - as: ocp-e2e-ovn-agent-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 14 * * 0
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -529,8 +527,7 @@ tests:
       VOLUME_CAPACITY: 120G
     workflow: openshift-e2e-libvirt-upi
 - as: ocp-heavy-build-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 13 * * 1-4
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -543,8 +540,7 @@ tests:
       USE_RAMFS: "true"
     workflow: openshift-e2e-libvirt-upi
 - as: ocp-image-ecosystem-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 12 * * 0
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -556,8 +552,7 @@ tests:
       TEST_TYPE: image-ecosystem
     workflow: openshift-e2e-libvirt-upi
 - as: ocp-jenkins-e2e-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 13 * * 0
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -569,8 +564,7 @@ tests:
       TEST_TYPE: jenkins-e2e-rhel-only
     workflow: openshift-e2e-libvirt-upi
 - as: ocp-e2e-serial-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 12 * * 6
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -582,8 +576,7 @@ tests:
       TEST_TYPE: conformance-serial
     workflow: openshift-e2e-libvirt-upi
 - as: ocp-fips-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 13 * * 6
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -596,8 +589,7 @@ tests:
       TEST_TYPE: conformance-parallel
     workflow: openshift-e2e-libvirt-upi-fips
 - as: ocp-e2e-compact-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 14 * * 6
   steps:
     cluster_profile: libvirt-ppc64le-s2s

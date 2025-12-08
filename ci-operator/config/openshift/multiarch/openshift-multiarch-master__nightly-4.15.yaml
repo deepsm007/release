@@ -496,8 +496,7 @@ tests:
       WORKER_REPLICAS: "0"
     workflow: openshift-e2e-libvirt
 - as: ocp-e2e-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 6 * * 5
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -511,8 +510,7 @@ tests:
       USE_RAMFS: "true"
     workflow: openshift-e2e-libvirt
 - as: ocp-heavy-build-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 0 18 1 *
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -526,8 +524,7 @@ tests:
       USE_RAMFS: "true"
     workflow: openshift-e2e-libvirt
 - as: ocp-image-ecosystem-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 0 19 1 *
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -539,8 +536,7 @@ tests:
       TEST_TYPE: image-ecosystem
     workflow: openshift-e2e-libvirt
 - as: ocp-jenkins-e2e-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 0 21 1 *
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -552,8 +548,7 @@ tests:
       TEST_TYPE: jenkins-e2e-rhel-only
     workflow: openshift-e2e-libvirt
 - as: ocp-e2e-serial-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 0 22 1 *
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -565,8 +560,7 @@ tests:
       TEST_TYPE: conformance-serial
     workflow: openshift-e2e-libvirt
 - as: ocp-fips-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 10 * * 5
   steps:
     cluster_profile: libvirt-ppc64le-s2s
@@ -579,8 +573,7 @@ tests:
       TEST_TYPE: conformance-parallel
     workflow: openshift-e2e-libvirt-fips
 - as: ocp-e2e-compact-ovn-remote-s2s-libvirt-ppc64le
-  capabilities:
-    - intranet
+  cluster: build10
   cron: 0 0 24 1 *
   steps:
     cluster_profile: libvirt-ppc64le-s2s
