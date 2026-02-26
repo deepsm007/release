@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prpqr-pruner
+  namespace: ci
+  labels:
+    app: prpqr-pruner
+  annotations:
+    keel.sh/policy: force
+    keel.sh/matchTag: "true"
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 5m"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prpqr-pruner
+  template:
+    metadata:
+      labels:
+        app: prpqr-pruner
+    spec:
+      serviceAccountName: prpqr-pruner
+      containers:
+      - name: prpqr-pruner
+        image: quay-proxy.ci.openshift.org/openshift/ci:ci_job-trigger-controller-manager_latest
+        imagePullPolicy: Always
+        command:
+        - /usr/bin/prpqr-pruner
+        args:
+        - --namespace=ci
+        - --retention-days=14
+        - --interval=6h
+        - --dry-run=false
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"

@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prpqr-pruner
+rules:
+- apiGroups:
+  - ci.openshift.io
+  resources:
+  - pullrequestpayloadqualificationruns
+  verbs:
+  - list
+  - delete
+  - get

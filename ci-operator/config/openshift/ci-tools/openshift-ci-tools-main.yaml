@@ -770,6 +770,7 @@ images:
 - dockerfile_literal: |-
     FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
     ADD job-trigger-controller-manager /usr/bin/job-trigger-controller-manager
+    ADD prpqr-pruner /usr/bin/prpqr-pruner
     ENTRYPOINT ["/usr/bin/job-trigger-controller-manager"]
   from: os
   inputs:
@@ -777,6 +778,8 @@ images:
       paths:
       - destination_dir: .
         source_path: /go/bin/job-trigger-controller-manager
+      - destination_dir: .
+        source_path: /go/bin/prpqr-pruner
   to: job-trigger-controller-manager
 - context_dir: images/payload-testing-ui
   from: os
