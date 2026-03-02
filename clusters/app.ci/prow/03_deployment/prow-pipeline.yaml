@@ -1,0 +1,85 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prow-pipeline
+  namespace: ci
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prow-pipeline
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: prow-pipeline
+    spec:
+      serviceAccountName: prow-pipeline
+      initContainers:
+      - name: git-sync-init
+        command:
+        - /git-sync
+        args:
+        - --repo=https://github.com/openshift/release.git
+        - --branch=main
+        - --root=/tmp/git-sync
+        - --one-time=true
+        - --depth=1
+        env:
+        - name: GIT_SYNC_DEST
+          value: release
+        image: registry.k8s.io/git-sync/git-sync:v3.6.2
+        volumeMounts:
+        - name: release
+          mountPath: /tmp/git-sync
+      containers:
+      - name: git-sync
+        command:
+        - /git-sync
+        args:
+        - --repo=https://github.com/openshift/release.git
+        - --branch=main
+        - --wait=30
+        - --root=/tmp/git-sync
+        - --max-sync-failures=3
+        env:
+        - name: GIT_SYNC_DEST
+          value: release
+        image: registry.k8s.io/git-sync/git-sync:v3.6.2
+        resources:
+          requests:
+            cpu: "0.5"
+            memory: 1Gi
+        volumeMounts:
+        - name: release
+          mountPath: /tmp/git-sync
+      - name: pipeline
+        image: gcr.io/k8s-prow/pipeline:v20240306-0b904de3b3
+        imagePullPolicy: IfNotPresent
+        args:
+        - --all-contexts
+        - --config=/etc/config/config.yaml
+        - --supplemental-prow-config-dir=/etc/config
+        - --job-config-path=/var/repo/release/ci-operator/jobs
+        - --kubeconfig-dir=/etc/build-farm-credentials
+        - --kubeconfig-suffix=config
+        volumeMounts:
+        - name: config
+          mountPath: /etc/config
+          readOnly: true
+        - name: release
+          mountPath: /var/repo
+        - name: build-farm-credentials
+          mountPath: /etc/build-farm-credentials
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          name: config
+      - name: release
+        emptyDir: {}
+      - name: build-farm-credentials
+        secret:
+          secretName: crier
