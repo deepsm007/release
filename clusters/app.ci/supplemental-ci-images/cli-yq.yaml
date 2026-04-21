@@ -14,15 +14,25 @@ spec:
       name: quay.io/openshift/ci:ocp_cli-yq_latest
   source:
     dockerfile: |
-      FROM ocp/4.12:cli
-      RUN curl -L https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /tmp/yq && chmod +x /tmp/yq
+      FROM ocp/4.18:cli
+      # Install yq for the same CPU architecture as the base image (supports multi-arch builds).
+      RUN ARCH=$(uname -m) && \
+          case "$ARCH" in \
+              x86_64) YQ_ARCH=amd64 ;; \
+              aarch64) YQ_ARCH=arm64 ;; \
+              ppc64le) YQ_ARCH=ppc64le ;; \
+              s390x) YQ_ARCH=s390x ;; \
+              *) echo "unsupported architecture: $ARCH" && exit 1 ;; \
+          esac && \
+          curl -fsSL "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_${YQ_ARCH}" -o /usr/local/bin/yq && \
+          chmod +x /usr/local/bin/yq
       RUN yum install -y jq
     type: Dockerfile
   strategy:
     dockerStrategy:
       from:
         kind: ImageStreamTag
-        name: 4.12:cli
+        name: 4.18:cli
         namespace: ocp
       imageOptimizationPolicy: SkipLayers
     type: Docker
