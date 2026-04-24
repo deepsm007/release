@@ -311,10 +311,10 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build01\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build01"
+      max_age: "2h"
+      severity: "Degraded"
   - component_slug: "build-farm"
     sub_component_slug: "build03"
     prometheus_monitor:
@@ -327,10 +327,10 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build03\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build03"
+      max_age: "2h"
+      severity: "Degraded"
   - component_slug: "build-farm"
     sub_component_slug: "build04"
     prometheus_monitor:
@@ -343,10 +343,10 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build04\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build04"
+      max_age: "2h"
+      severity: "Degraded"
   - component_slug: "build-farm"
     sub_component_slug: "build05"
     prometheus_monitor:
@@ -359,10 +359,10 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build05\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build05"
+      max_age: "2h"
+      severity: "Degraded"
   - component_slug: "build-farm"
     sub_component_slug: "build06"
     prometheus_monitor:
@@ -375,10 +375,10 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build06\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build06"
+      max_age: "2h"
+      severity: "Degraded"
   - component_slug: "build-farm"
     sub_component_slug: "build07"
     prometheus_monitor:
@@ -391,10 +391,10 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build07\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build07"
+      max_age: "2h"
+      severity: "Degraded"
   - component_slug: "build-farm"
     sub_component_slug: "build08"
     prometheus_monitor:
@@ -407,10 +407,10 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build08\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build08"
+      max_age: "2h"
+      severity: "Degraded"
   - component_slug: "build-farm"
     sub_component_slug: "build09"
     prometheus_monitor:
@@ -423,10 +423,10 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build09\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build09"
+      max_age: "2h"
+      severity: "Degraded"
   - component_slug: "build-farm"
     sub_component_slug: "build10"
     prometheus_monitor:
@@ -439,10 +439,10 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build10\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build10"
+      max_age: "2h"
+      severity: "Degraded"
   - component_slug: "build-farm"
     sub_component_slug: "build11"
     prometheus_monitor:
@@ -455,8 +455,8 @@ components:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{cluster=\"build11\",state=\"success\"}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-build11"
+      max_age: "2h"
+      severity: "Degraded"
   # END: auto-generated build-farm entries

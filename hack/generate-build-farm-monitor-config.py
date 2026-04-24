@@ -57,10 +57,10 @@ for name, blocked in clusters:
           duration: "5m"
           step: "30s"
           severity: "Down"
-        - query: "rate(prowjob_state_transitions{{cluster=\\"{name}\\",state=\\"success\\"}}[2h]) > 0"
-          duration: "2h"
-          step: "5m"
-          severity: "Degraded"
+    junit_monitor:
+      job_name: "periodic-build-farm-canary-{name}"
+      max_age: "2h"
+      severity: "Degraded"
 """
 
     display = "Build" + name[5:]
