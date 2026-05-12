@@ -71,7 +71,7 @@ metadata:
   name: master-64cvr-worker-highmem-aarch64-us-east-1a
   namespace: openshift-machine-api
 spec:
-  maxReplicas: 6
+  maxReplicas: 5
   minReplicas: 0
   scaleTargetRef:
     apiVersion: machine.openshift.io/v1beta1
@@ -151,7 +151,7 @@ metadata:
   name: master-64cvr-worker-highmem-aarch64-us-east-1b
   namespace: openshift-machine-api
 spec:
-  maxReplicas: 6
+  maxReplicas: 5
   minReplicas: 0
   scaleTargetRef:
     apiVersion: machine.openshift.io/v1beta1
@@ -231,7 +231,7 @@ metadata:
   name: master-64cvr-worker-highmem-aarch64-us-east-1c
   namespace: openshift-machine-api
 spec:
-  maxReplicas: 6
+  maxReplicas: 5
   minReplicas: 0
   scaleTargetRef:
     apiVersion: machine.openshift.io/v1beta1
