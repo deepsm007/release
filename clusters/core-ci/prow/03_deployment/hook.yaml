@@ -1,4 +1,5 @@
-# ClusterIP only — NO Route/Ingress. GitHub webhooks must not reach this cluster yet.
+# ClusterIP only for Service. Route uses default apps hostname for manual testing —
+# NOT hook.ci.openshift.org (no DNS / GitHub cutover).
 apiVersion: v1
 kind: Service
 metadata:
@@ -22,6 +23,27 @@ spec:
     protocol: TCP
     targetPort: 9090
   type: ClusterIP
+---
+# Default apps host only (hook-ci.apps.master.ci.devcluster.openshift.com).
+# Do not set spec.host to hook.ci.openshift.org.
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  namespace: ci
+  name: hook
+  labels:
+    app: prow
+    component: hook
+spec:
+  path: /hook
+  port:
+    targetPort: 8888
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: hook
 ---
 apiVersion: apps/v1
 kind: Deployment
