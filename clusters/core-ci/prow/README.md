@@ -14,9 +14,9 @@ Bootstrap of the Prow control plane on core-ci. This is the first step of moving
 |-----------|----------|-----|
 | ghproxy | 1 | Local GitHub API cache; ClusterIP only |
 | hook | 1 | Deployed for smoke, but not exposed publicly |
-| prow-controller-manager | 0 | Waiting on secrets / canary |
-| crier | 0 | Same |
-| sinker | 0 | Same |
+| prow-controller-manager | 1 | Secrets landed; still no webhook traffic |
+| crier | 1 | Same |
+| sinker | 1 | Same |
 | tide | 0 | Stay off until we intentionally split repos |
 | horologium | 0 | Stay off so we don’t double-create periodics |
 

@@ -25,8 +25,7 @@ metadata:
     app: prow
     component: crier
 spec:
-  # Scale up after crier + GCS + slack secrets exist; keep 0 during bootstrap.
-  replicas: 0
+  replicas: 1
   revisionHistoryLimit: 2
   strategy:
     type: Recreate
