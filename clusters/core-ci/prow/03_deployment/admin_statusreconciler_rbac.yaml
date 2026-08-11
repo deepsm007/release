@@ -1,0 +1,34 @@
+# Ported from clusters/app.ci/prow/03_deployment for DPTP-4267 core-ci cutover.
+# Pods pinned to worker-prow-services. Argo syncs on merge — do not apply manually.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: statusreconciler
+  namespace: ci
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: statusreconciler
+  namespace: ci
+rules:
+  - apiGroups:
+      - "prow.k8s.io"
+    resources:
+      - prowjobs
+    verbs:
+      - create
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: statusreconciler
+  namespace: ci
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: statusreconciler
+subjects:
+- kind: ServiceAccount
+  name: statusreconciler

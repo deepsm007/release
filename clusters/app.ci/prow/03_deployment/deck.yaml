@@ -74,7 +74,8 @@ objects:
       app: prow
       component: deck
   spec:
-    replicas: 2
+    # DPTP-4267 cutover freeze
+    replicas: 0
     revisionHistoryLimit: 2
     selector:
       matchLabels:
@@ -286,7 +287,8 @@ objects:
       app: prow
       component: deck-internal
   spec:
-    replicas: 2
+    # DPTP-4267 cutover freeze
+    replicas: 0
     revisionHistoryLimit: 2
     selector:
       matchLabels:

@@ -1,0 +1,118 @@
+# Wave 1 DPTP-4267: public CI hostnames that are not hook/prow.
+# Git-only until cutover. DNS stays on app.ci — cert-manager HTTP-01 will fail
+# until those names point at core-ci. Do not oc apply.
+# bugs.ci backend is service backport-verifier (app.ci Ingress still says bugzilla-backporter).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: cert-issuer
+    haproxy.router.openshift.io/timeout: "90s"
+  name: dptp-frontends
+  namespace: ci
+spec:
+  ingressClassName: openshift-default
+  tls:
+  - secretName: dptp-frontends-tls
+    hosts:
+    - config.ci.openshift.org
+    - steps.ci.openshift.org
+    - bugs.ci.openshift.org
+    - slack.ci.openshift.org
+    - docs.ci.openshift.org
+    - cluster-display.ci.openshift.org
+    - selfservice.vault.ci.openshift.org
+    - resources.ci.openshift.org
+    - pr-payload-tests.ci.openshift.org
+    - helpdesk-faq.ci.openshift.org
+  rules:
+  - host: config.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: ci-operator-configresolver
+            port:
+              number: 80
+        pathType: ImplementationSpecific
+  - host: steps.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: ci-operator-configresolver
+            port:
+              number: 8082
+        pathType: ImplementationSpecific
+  - host: resources.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: pod-scaler-ui
+            port:
+              number: 80
+        pathType: ImplementationSpecific
+  - host: bugs.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: backport-verifier
+            port:
+              number: 80
+        pathType: ImplementationSpecific
+  - host: slack.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: slack-bot
+            port:
+              number: 8888
+        pathType: ImplementationSpecific
+  - host: docs.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: ci-docs
+            port:
+              number: 8080
+        pathType: ImplementationSpecific
+  - host: cluster-display.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: ci-docs
+            port:
+              number: 8090
+        pathType: ImplementationSpecific
+  - host: selfservice.vault.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: vault-secret-collection-manager
+            port:
+              number: 4180
+        pathType: ImplementationSpecific
+  - host: pr-payload-tests.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: payload-testing-ui
+            port:
+              number: 8000
+        pathType: ImplementationSpecific
+  - host: helpdesk-faq.ci.openshift.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: helpdesk-faq
+            port:
+              number: 8080
+        pathType: ImplementationSpecific

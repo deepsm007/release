@@ -1,4 +1,5 @@
-# replicas: 0 — must not create periodics while app.ci horologium owns production.
+# Cutover (DPTP-4267): replicas 1. app.ci horologium must be 0 to avoid double periodics.
+# See clusters/core-ci/prow/CUTOVER.md
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,7 +9,7 @@ metadata:
     app: prow
     component: horologium
 spec:
-  replicas: 0
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:

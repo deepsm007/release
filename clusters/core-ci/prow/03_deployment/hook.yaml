@@ -1,5 +1,6 @@
-# ClusterIP only for Service. Route uses default apps hostname for manual testing —
-# NOT hook.ci.openshift.org (no DNS / GitHub cutover).
+# Service is ClusterIP. Pre-cutover smoke uses the apps Route below.
+# Production webhook host is hook.ci.openshift.org via ingress-prow.yaml (DNS + GitHub App).
+# See CUTOVER.md.
 apiVersion: v1
 kind: Service
 metadata:
@@ -24,8 +25,8 @@ spec:
     targetPort: 9090
   type: ClusterIP
 ---
-# Default apps host only (hook-ci.apps.master.ci.devcluster.openshift.com).
-# Do not set spec.host to hook.ci.openshift.org.
+# Default apps host for pre-cutover HMAC smoke (hook-ci.apps.master.ci.devcluster.openshift.com).
+# Production: Ingress hook.ci.openshift.org in ingress-prow.yaml after cutover.
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:

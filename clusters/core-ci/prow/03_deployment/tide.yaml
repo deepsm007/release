@@ -1,5 +1,5 @@
-# replicas: 0 — must not merge while app.ci tide owns production.
-# No Route/Ingress in this phase.
+# Cutover (DPTP-4267): replicas 1. app.ci tide must be 0 before/at same sync.
+# See clusters/core-ci/prow/CUTOVER.md
 apiVersion: v1
 kind: Service
 metadata:
@@ -31,7 +31,7 @@ metadata:
     app: prow
     component: tide
 spec:
-  replicas: 0
+  replicas: 1
   strategy:
     type: Recreate
   selector:

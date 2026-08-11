@@ -87,7 +87,9 @@ metadata:
     app: prow
     component: hook-apps
 spec:
-  replicas: 2
+  # DPTP-4267 cutover freeze: replicas 0 while Prow control plane runs on core-ci.
+  # Revert: restore prior replica count (see clusters/core-ci/prow/CUTOVER.md).
+  replicas: 0
   revisionHistoryLimit: 2
   selector:
     matchLabels:
