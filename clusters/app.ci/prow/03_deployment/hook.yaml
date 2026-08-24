@@ -93,24 +93,27 @@ spec:
     matchLabels:
       app: prow
       component: hook-apps
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
+      annotations:
+        ci-workload-autoscaler.openshift.io/scale: "false"
       labels:
         app: prow
         component: hook-apps
     spec:
       affinity:
         podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: component
-                  operator: In
-                  values:
-                  - hook-apps
-              topologyKey: "kubernetes.io/hostname"
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: prow
+                component: hook-apps
+            topologyKey: kubernetes.io/hostname
       serviceAccountName: hook
       initContainers:
       - name: git-sync-init
@@ -195,10 +198,10 @@ spec:
           readOnly: true
         resources:
           requests:
-            memory: "26Gi"
+            memory: "14Gi"
             cpu: "200m"
           limits:
-            memory: "49Gi"
+            memory: "35Gi"
         livenessProbe:
           httpGet:
             path: /healthz

@@ -27,10 +27,13 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/pollSchedule: "@every 5m"
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 2
   strategy:
-    type: Recreate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
   selector:
     matchLabels:
       app: prow
@@ -38,11 +41,21 @@ spec:
       flavor: apps-auth
   template:
     metadata:
+      annotations:
+        ci-workload-autoscaler.openshift.io/scale: "false"
       labels:
         app: prow
         component: pipeline-controller
         flavor: apps-auth
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: prow
+                component: pipeline-controller
+            topologyKey: kubernetes.io/hostname
       serviceAccountName: pipeline-controller
       initContainers:
         - name: git-sync-init
@@ -89,10 +102,10 @@ spec:
                 key: appid
           resources:
             requests:
-              memory: "26Gi"
-              cpu: "600m"
+              memory: "14Gi"
+              cpu: "400m"
             limits:
-              memory: "30Gi"
+              memory: "22Gi"
           ports:
             - name: http
               containerPort: 8888

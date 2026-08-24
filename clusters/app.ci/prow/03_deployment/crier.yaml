@@ -66,7 +66,7 @@ spec:
       - name: crier
         image: us-docker.pkg.dev/k8s-infra-prow/images/crier:v20260819-7593870dc
         args:
-        - --github-workers=30
+        - --github-workers=20
         - --config-path=/etc/config/config.yaml
         - --supplemental-prow-config-dir=/etc/config
         - --job-config-path=/var/repo/release/ci-operator/jobs
@@ -75,10 +75,10 @@ spec:
         - --github-endpoint=http://ghproxy
         - --github-endpoint=https://api.github.com
         - --github-graphql-endpoint=http://ghproxy/graphql
-        - --blob-storage-workers=20
+        - --blob-storage-workers=12
         - --gcs-credentials-file=/etc/service-account/service-account.json
-        - --kubernetes-blob-storage-workers=20
-        - --slack-workers=5
+        - --kubernetes-blob-storage-workers=12
+        - --slack-workers=3
         - --slack-token-file=/etc/slack/oauth
         - --projected-token-file=/var/sa-token/token
         - --kubeconfig-dir=/etc/build-farm-credentials
@@ -111,10 +111,10 @@ spec:
           readOnly: true
         resources:
           requests:
-            memory: "21Gi"
-            cpu: "600m"
+            memory: "16Gi"
+            cpu: "400m"
           limits:
-            memory: "26Gi"
+            memory: "22Gi"
       - name: git-sync
         command:
         - /git-sync

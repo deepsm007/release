@@ -31,15 +31,21 @@ metadata:
     app: prow
     component: retester
 spec:
-  replicas: 1
+  replicas: 2
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: prow
       component: retester
   strategy:
-    type: Recreate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
+      annotations:
+        ci-workload-autoscaler.openshift.io/scale: "false"
       labels:
         app: prow
         component: retester
@@ -54,6 +60,13 @@ spec:
                 operator: NotIn
                 values:
                 - r5.4xlarge
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: prow
+                component: retester
+            topologyKey: kubernetes.io/hostname
       initContainers:
       - name: git-sync-init
         resources:
@@ -127,8 +140,10 @@ spec:
           readOnly: true
         resources:
           requests:
-            memory: "5Gi"
+            memory: "10Gi"
             cpu: "250m"
+          limits:
+            memory: "20Gi"
       - name: git-sync
         command:
         - /git-sync
