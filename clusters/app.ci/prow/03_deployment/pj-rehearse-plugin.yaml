@@ -106,10 +106,10 @@ spec:
           mountPath: /var/tmp
         resources:
           requests:
-            memory: "32Gi"
+            memory: "18Gi"
             cpu: "6"
           limits:
-            memory: "64Gi"
+            memory: "49Gi"
             cpu: "6"
         livenessProbe:
           httpGet:

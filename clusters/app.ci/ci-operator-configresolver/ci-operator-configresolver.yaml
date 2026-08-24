@@ -157,6 +157,11 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -173,6 +178,12 @@ spec:
           mountPath: /tmp/git-sync
       containers:
       - name: git-sync
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "2Gi"
         command:
         - /git-sync
         args:
@@ -219,8 +230,10 @@ spec:
           readOnly: true
         resources:
           requests:
-            memory: "2Gi"
+            memory: "3Gi"
             cpu: "200m"
+          limits:
+            memory: "6Gi"
       serviceAccountName: ci-operator-configresolver
       volumes:
       - name: release

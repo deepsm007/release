@@ -36,6 +36,11 @@ spec:
     spec:
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -84,8 +89,10 @@ spec:
           mountPath: /var/repo
         resources:
           requests:
-            memory: "75Mi"
+            memory: "1Gi"
             cpu: "30m"
+          limits:
+            memory: "1Gi"
         livenessProbe:
           httpGet:
             path: /healthz
@@ -112,8 +119,10 @@ spec:
           mountPath: /tmp/git-sync
         resources:
           requests:
-            memory: "1Gi"
+            memory: "256Mi"
             cpu: "0.5"
+          limits:
+            memory: "2Gi"
       volumes:
       - name: hmac
         secret:

@@ -46,6 +46,11 @@ spec:
       serviceAccountName: pipeline-controller
       initContainers:
         - name: git-sync-init
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"
           command:
             - /git-sync
           args:
@@ -84,8 +89,10 @@ spec:
                 key: appid
           resources:
             requests:
-              memory: "7.5Gi"
+              memory: "26Gi"
               cpu: "600m"
+            limits:
+              memory: "30Gi"
           ports:
             - name: http
               containerPort: 8888
@@ -117,8 +124,10 @@ spec:
               mountPath: /tmp/git-sync
           resources:
             requests:
-              memory: "1Gi"
+              memory: "256Mi"
               cpu: "0.5"
+            limits:
+              memory: "2Gi"
       volumes:
         - name: hmac
           secret:

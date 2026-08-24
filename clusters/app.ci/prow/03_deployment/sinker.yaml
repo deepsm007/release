@@ -23,6 +23,11 @@ spec:
       serviceAccountName: sinker
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -60,9 +65,17 @@ spec:
           readOnly: true
         resources:
           requests:
-            memory: "10Gi"
+            memory: "20Gi"
             cpu: "50m"
+          limits:
+            memory: "30Gi"
       - name: git-sync
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "2Gi"
         command:
         - /git-sync
         args:

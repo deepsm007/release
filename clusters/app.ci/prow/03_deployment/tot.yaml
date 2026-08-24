@@ -66,6 +66,11 @@ spec:
                 - r5.4xlarge
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -101,8 +106,10 @@ spec:
           mountPath: /var/repo
         resources:
           requests:
-            memory: "6Gi"
+            memory: "18Gi"
             cpu: "20m"
+          limits:
+            memory: "22Gi"
         livenessProbe:
           httpGet:
             path: /healthz
@@ -129,8 +136,10 @@ spec:
           mountPath: /tmp/git-sync
         resources:
           requests:
-            memory: "1Gi"
+            memory: "256Mi"
             cpu: "0.5"
+          limits:
+            memory: "2Gi"
       volumes:
       - name: tot-volume
         persistentVolumeClaim:

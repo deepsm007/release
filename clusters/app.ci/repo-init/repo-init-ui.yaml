@@ -103,5 +103,8 @@ spec:
           timeoutSeconds: 600
         resources:
           requests:
-            memory: "3Gi"
+            memory: "1Gi"
             cpu: "500m"
+
+          limits:
+            memory: "1Gi"

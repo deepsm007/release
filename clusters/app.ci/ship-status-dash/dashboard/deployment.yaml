@@ -23,6 +23,11 @@ spec:
       serviceAccountName: ship-status
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -65,8 +70,10 @@ spec:
           mountPath: /tmp/git-sync
         resources:
           requests:
-            memory: "1Gi"
+            memory: "256Mi"
             cpu: "0.5"
+          limits:
+            memory: "2Gi"
       - name: oauth-proxy
         image: quay.io/openshift/origin-oauth-proxy:4.20
         args:

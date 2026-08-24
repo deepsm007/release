@@ -134,8 +134,10 @@ spec:
           name: tmp
         resources:
           requests:
-            memory: "8Gi"
+            memory: "9Gi"
             cpu: "2"
+          limits:
+            memory: "14Gi"
       volumes:
       - name: gcs-credentials
         secret:

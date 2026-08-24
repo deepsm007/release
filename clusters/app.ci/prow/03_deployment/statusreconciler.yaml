@@ -22,6 +22,11 @@ spec:
       terminationGracePeriodSeconds: 180
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -75,8 +80,10 @@ spec:
           mountPath: /var/repo
         resources:
           requests:
-            memory: "12Gi"
+            memory: "34Gi"
             cpu: "20m"
+          limits:
+            memory: "42Gi"
       - name: git-sync
         command:
         - /git-sync
@@ -93,8 +100,10 @@ spec:
           mountPath: /tmp/git-sync
         resources:
           requests:
-            memory: "1Gi"
+            memory: "256Mi"
             cpu: "0.5"
+          limits:
+            memory: "2Gi"
       volumes:
       - name: service-account-token
         projected:

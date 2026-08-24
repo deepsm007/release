@@ -109,8 +109,10 @@ spec:
           timeoutSeconds: 600
         resources:
           requests:
-            memory: "100Mi"
+            memory: "1Gi"
             cpu: "200m"
+          limits:
+            memory: "1Gi"
         volumeMounts:
         - mountPath: /etc/report
           name: result-aggregator

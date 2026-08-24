@@ -114,6 +114,11 @@ spec:
       serviceAccountName: hook
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -190,8 +195,10 @@ spec:
           readOnly: true
         resources:
           requests:
-            memory: "24Gi"
+            memory: "26Gi"
             cpu: "200m"
+          limits:
+            memory: "49Gi"
         livenessProbe:
           httpGet:
             path: /healthz
@@ -218,8 +225,10 @@ spec:
           mountPath: /tmp/git-sync
         resources:
           requests:
-            memory: "1Gi"
+            memory: "256Mi"
             cpu: "0.5"
+          limits:
+            memory: "2Gi"
       volumes:
       - name: service-account-token
         projected:

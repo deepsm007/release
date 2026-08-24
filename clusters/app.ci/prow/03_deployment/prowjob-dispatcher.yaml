@@ -112,6 +112,11 @@ spec:
       serviceAccountName: prowjob-dispatcher
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -127,6 +132,11 @@ spec:
           mountPath: /tmp/git-sync
       containers:
       - name: prowjob-dispatcher
+        resources:
+          requests:
+            memory: "2Gi"
+          limits:
+            memory: "5Gi"
         image: quay.io/openshift/ci-public:ci_prow-job-dispatcher_latest
         imagePullPolicy: Always
         args:
@@ -199,6 +209,12 @@ spec:
         - name: release
           mountPath: /var/repo
       - name: git-sync
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "2Gi"
         command:
         - /git-sync
         args:

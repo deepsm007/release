@@ -103,6 +103,11 @@ objects:
         serviceAccountName: deck
         initContainers:
         - name: git-sync-init
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"
           command:
           - /git-sync
           args:
@@ -191,8 +196,10 @@ objects:
             readOnly: true
           resources:
             requests:
-              memory: "20Gi"
+              memory: "28Gi"
               cpu: "2"
+            limits:
+              memory: "62Gi"
         - name: git-sync
           command:
           - /git-sync
@@ -209,8 +216,10 @@ objects:
             mountPath: /tmp/git-sync
           resources:
             requests:
-              memory: "1Gi"
+              memory: "256Mi"
               cpu: "0.5"
+            limits:
+              memory: "2Gi"
         volumes:
         - name: github-app-credentials
           secret:
@@ -312,6 +321,11 @@ objects:
         serviceAccountName: deck
         initContainers:
         - name: git-sync-init
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"
           command:
           - /git-sync
           args:
@@ -342,9 +356,17 @@ objects:
             mountPath: /tmp/git-sync
           resources:
             requests:
-              memory: "1Gi"
+              memory: "256Mi"
               cpu: "0.5"
+            limits:
+              memory: "2Gi"
         - name: oauth-proxy
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "50m"
+            limits:
+              memory: "256Mi"
           image: quay.io/openshift/origin-oauth-proxy:4.16
           imagePullPolicy: IfNotPresent
           ports:
@@ -449,6 +471,8 @@ objects:
             requests:
               memory: "20Gi"
               cpu: "2"
+            limits:
+              memory: "26Gi"
         volumes:
         - name: github-app-credentials
           secret:

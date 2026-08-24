@@ -82,6 +82,11 @@ spec:
     spec:
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -143,8 +148,10 @@ spec:
           mountPath: /var/repo
         resources:
           requests:
-            memory: "300Mi"
+            memory: "2Gi"
             cpu: "50m"
+          limits:
+            memory: "2Gi"
         livenessProbe:
           httpGet:
             path: /healthz
@@ -172,8 +179,10 @@ spec:
           mountPath: /tmp/git-sync
         resources:
           requests:
-            memory: "1Gi"
+            memory: "256Mi"
             cpu: "0.5"
+          limits:
+            memory: "2Gi"
       serviceAccountName: payload-testing-prow-plugin
       volumes:
       - name: hmac

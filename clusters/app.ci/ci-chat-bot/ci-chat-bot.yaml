@@ -291,6 +291,11 @@ spec:
           emptyDir: { }
       initContainers:
         - name: git-sync-init
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"
           command:
             - /git-sync
           args:
@@ -323,8 +328,10 @@ spec:
               mountPath: /tmp/git-sync
           resources:
             requests:
-              memory: "1Gi"
+              memory: "256Mi"
               cpu: "0.5"
+            limits:
+              memory: "2Gi"
         - name: bot
           image: quay-proxy.ci.openshift.org/openshift/ci:ci_ci-chat-bot_latest
           imagePullPolicy: Always
@@ -342,8 +349,10 @@ spec:
             periodSeconds: 3
           resources:
             requests:
-              memory: "12Gi"
+              memory: "18Gi"
               cpu: "250m"
+            limits:
+              memory: "25Gi"
           volumeMounts:
             - mountPath: /etc/config
               name: config

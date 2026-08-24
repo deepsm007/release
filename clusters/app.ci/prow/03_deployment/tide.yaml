@@ -47,6 +47,11 @@ spec:
       serviceAccountName: tide
       initContainers:
       - name: git-sync-init
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
         command:
         - /git-sync
         args:
@@ -108,8 +113,10 @@ spec:
           readOnly: true
         resources:
           requests:
-            memory: "20Gi"
+            memory: "36Gi"
             cpu: "1500m"
+          limits:
+            memory: "41Gi"
       - name: git-sync
         command:
         - /git-sync
@@ -126,8 +133,10 @@ spec:
           mountPath: /tmp/git-sync
         resources:
           requests:
-            memory: "1Gi"
+            memory: "256Mi"
             cpu: "0.5"
+          limits:
+            memory: "2Gi"
       volumes:
       - name: service-account-token
         projected:
