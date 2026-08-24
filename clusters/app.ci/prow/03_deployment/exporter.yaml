@@ -59,10 +59,10 @@ spec:
           mountPath: /var/sa-token
         resources:
           requests:
-            memory: "5Gi"
-            cpu: "600m"
+            memory: "1Gi"
+            cpu: "200m"
           limits:
-            memory: "25Gi"
+            memory: "4Gi"
       volumes:
       - name: config
         configMap:
