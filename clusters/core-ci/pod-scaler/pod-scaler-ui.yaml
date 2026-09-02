@@ -94,9 +94,6 @@ spec:
                   values:
                   - pod-scaler-ui
               topologyKey: "kubernetes.io/hostname"
-      tolerations:
-      - key: manual-provision
-        operator: Exists
       containers:
       - name: pod-scaler-ui
         image: quay-proxy.ci.openshift.org/openshift/ci:ci_pod-scaler_latest
@@ -142,4 +139,3 @@ spec:
           secretName: gce-sa-credentials-resource-usage-data-publisher
       - emptyDir: {}
         name: tmp
-
