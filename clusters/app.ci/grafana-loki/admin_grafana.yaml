@@ -201,6 +201,7 @@ metadata:
   name: grafana-loki-redirect
   namespace: ci
 spec:
+  replicas: 0
   selector:
     matchLabels:
       component: grafana-loki-redirect
